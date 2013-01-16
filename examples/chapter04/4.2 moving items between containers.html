@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+Ext.application({
+    launch : function() {
+        var mainContainer = Ext.create('Ext.Container', {
+            fullscreen : true,
+            defaults   : {
+                style : 'margin-bottom:30px'
+            },
+            items      : [
+                {
+                    itemId : 'panel1',
+                    items  : [
+                        {
+                            xtype       : 'textfield',
+                            label       : 'Login',
+                            itemId      : 'loginField',
+                            placeHolder : 'Enter Username Here'
+                        },
+                        {
+                            xtype       : 'textfield',
+                            label       : 'Password',
+                            placeHolder : 'Enter Password Here'
+                        }
+                    ]
+                },
+                {
+                    itemId : 'panel2',
+                    items  : [
+                        {
+                            xtype       : 'textfield',
+                            label       : 'Organization',
+                            placeHolder : 'Enter Your Organization Here'
+                        },
+                        {
+                            xtype : 'checkboxfield',
+                            label : 'Remember Login'
+                        }
+                    ]
+                }
+            ]
+        });
+        Ext.defer(function() {
+            var myField = mainContainer.down('#loginField');
+
+            var panel1 = mainContainer.down('#panel1');
+            panel1.remove(myField, false);
+
+            var panel2 = mainContainer.down('#panel2');
+            panel2.add(myField);
+        }, 2000, this);
+
+    }
+});
+
+    </script>
+
+</head>
+<body></body>
+</html>

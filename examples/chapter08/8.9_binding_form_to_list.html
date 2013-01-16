@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title></title>
+    <link rel='stylesheet' href='../../touch/resources/css/sencha-touch.css' type='text/css'>
+    <script type='text/javascript' src='../../touch/sencha-touch-all-debug.js'></script>
+    <style type="text/css">
+        .invite-list .status {
+            display: inline-block;
+            vertical-align: middle;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            margin-right: 10px;
+        }
+
+        .invite-list .decline {
+            background-color: red;
+        }
+
+        .invite-list .undecided {
+            background-color: grey;
+        }
+
+        .invite-list .accept {
+            background-color: green;
+        }
+    </style>
+    <script>
+        /*
+         Sample code to bind a form to a list via the use of a sheet.
+         */
+        Ext.application({
+            launch : function () {
+
+                Ext.Viewport.add({
+                    xtype      : 'list',
+                    fullscreen : true,
+                    cls        : 'invite-list',
+                    itemTpl    : '<span class="status {decision}"></span>{name}',
+                    items      : {
+                        xtype  : 'toolbar',
+                        docked : 'top',
+                        title  : 'Party Invitation Manager'
+                    },
+                    store      : {
+                        data : [
+                            {
+                                name     : 'Jay Garcia',
+                                decision : 'decline'
+                            },
+                            {
+                                name     : 'Anthony De Moss',
+                                decision : 'undecided'
+                            },
+                            {
+                                name     : 'Sebastian Stirling',
+                                decision : 'accept'
+                            }
+                        ]
+                    },
+                    listeners  : {
+                        itemtap : function (listView, index, target, record) {
+                            sheet.down('formpanel').setRecord(record);
+                            Ext.Viewport.add(sheet);
+                            sheet.show();
+                        }
+                    }
+                });
+
+                var sheetToolbar = {
+                    xtype  : 'toolbar',
+                    docked : 'top',
+                    title  : 'Edit Invitee',
+                    items  : [
+                        {
+                            ui      : 'default',
+                            text    : 'Cancel',
+                            handler : function (btn) {
+                                btn.up('sheet').hide();
+                            }
+                        },
+                        {
+                            xtype : 'spacer'
+                        },
+                        {
+                            ui      : 'confirm',
+                            text    : 'Save',
+                            handler : function (btn) {
+                                var form = sheet.down('formpanel'),
+                                        record = form.getRecord();
+
+                                form.updateRecord(record);
+                                btn.up('sheet').hide();
+                            }
+                        }
+                    ]
+                };
+
+                var sheetForm = {
+                    xtype    : 'formpanel',
+                    defaults : { labelWidth : 65 },
+                    items    : [
+                        {
+                            xtype : 'textfield',
+                            label : 'Name',
+                            name  : 'name'
+                        },
+                        {
+                            xtype   : 'selectfield',
+                            label   : 'Status',
+                            name    : 'decision',
+                            options : [
+                                {
+                                    text  : 'Undecided',
+                                    value : 'undecided'
+                                },
+                                {
+                                    text  : 'Accepted',
+                                    value : 'accept'
+                                },
+                                {
+                                    text  : 'Declined',
+                                    value : 'decline'
+                                }
+                            ]
+                        }
+                    ]
+                };
+
+                var sheet = Ext.create('Ext.Sheet', {
+                    layout        : 'fit',
+                    modal         : true,
+                    hideOnMaskTap : false,
+                    height        : 170,
+                    width         : 310,
+                    items         : [
+                        sheetToolbar,
+                        sheetForm
+                    ]
+                });
+
+            }
+        });
+    </script>
+</head>
+<body></body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

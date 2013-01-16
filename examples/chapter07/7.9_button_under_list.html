@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Listing 7.9 Button Under List</title>
+    <link rel="stylesheet" href="../../sencha-touch-2.0.1.1/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../sencha-touch-2.0.1.1/sencha-touch-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.Loader.setPath('Ext', '../../sencha-touch-2.0.1.1/src');
+
+        Ext.require([
+            'Ext.data.Store',
+            'Ext.dataview.List',
+            'Ext.Button'
+        ]);
+
+        Ext.application({
+            name     : 'STIA',
+            viewport : {
+                autoMaximize : true
+            },
+            launch   : function () {
+
+                new Ext.Container({
+                    fullscreen : true,
+                    scrollable : 'vertical',
+                    items      : [
+                        {
+                            xtype      : 'list',
+                            scrollable : false,
+                            itemTpl    : ''.concat(
+                                '{name} ',
+                                '<a href="http://www.twitter.com/{twitter}" target="_blank">',
+                                    '@{twitter}',
+                                '</a>'
+                            ),
+                            store      : {
+                                fields : ['name', 'twitter'],
+                                data   : [
+                                    { name : 'Mitchell Simoens', twitter : 'SenchaMitch' },
+                                    { name : 'Jay Garcia',       twitter : 'ModusJesus'  },
+                                    { name : 'Anthony De Moss',  twitter : 'ademoss1'    }
+                                ]
+                            }
+                        },
+                        {
+                            xtype : 'button',
+                            text  : 'Load Next',
+                            ui    : 'confirm'
+                        }
+                    ]
+                });
+
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

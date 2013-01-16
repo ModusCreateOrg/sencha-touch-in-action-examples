@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>FormPanel</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+    <script type="text/javascript">
+        /*
+         Sample code to show forms with fieldsets.
+         */
+        Ext.application({
+            launch : function() {
+                var myPanel = Ext.create("Ext.form.FormPanel", {
+                    fullscreen : true,
+                    scrollabke : "vertical",
+                    items      : [
+                        {
+                            xtype  : "toolbar",
+                            title  : "Party Organizer 2000",
+                            docked : "top"
+                        },
+                        // setup the first fieldset with a title & instructions
+                        {
+                            xtype        : "fieldset",
+                            title        : "Personal Info",
+                            instructions : "Enter your personal information",
+                            items        : [
+                                {
+                                    xtype       : "textfield",
+                                    label       : "First",
+                                    name        : "firstname",
+                                    placeHolder : "Enter your first name"
+                                },
+                                {
+                                    xtype       : "textfield",
+                                    label       : "Last",
+                                    name        : "lastname",
+                                    placeHolder : "Enter your last name"
+                                }
+                            ]
+                        },
+                        // setup the second fieldset
+                        {
+                            xtype        : "fieldset",
+                            title        : "Food Preferences",
+                            instructions : "Pick your dietary restrictions and food preferences",
+                            items        : [
+                                {
+                                    itemId      : "dietfield",
+                                    xtype       : "selectfield",
+                                    label       : "Diet",
+                                    placeHolder : "Select diet",
+                                    options     : [
+                                        {
+                                            text  : "Vegetarian",
+                                            value : "veggies"
+                                        },
+                                        {
+                                            text  : "Meat Eater",
+                                            value : "meat"
+                                        }
+                                    ]
+                                },
+                                {
+                                    itemId      : "foodfield",
+                                    xtype       : "selectfield",
+                                    disabled    : true,
+                                    label       : "Food",
+                                    placeHolder : "Select food",
+                                    options     : [
+                                        {
+                                            text  : "I eat anything",
+                                            value : "undecided"
+                                        },
+                                        {
+                                            text  : "I am picky",
+                                            value : "accept"
+                                        }
+                                    ]
+                                }
+                            ]
+                        } // end second fieldset
+                    ]
+                }); // end myPanel
+            } // end onReady()
+        }); // end setup()
+    </script>
+
+</head>
+<body></body>
+</html>

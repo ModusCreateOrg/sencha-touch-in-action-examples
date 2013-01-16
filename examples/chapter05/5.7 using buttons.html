@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+<script type="text/javascript">
+
+Ext.application({
+    launch: function() {
+
+       var tbar = {                                                       //# 1
+        xtype    : 'toolbar',
+        docked   : 'top',
+        defaults : {
+            iconMask  : true
+        },
+        items : [                                                         //# 2
+            {
+                text      : 'delete',
+                iconCls   : 'delete',
+                iconAlign : 'left',
+                ui        : 'back'
+            },
+            {
+                text      : 'organize',
+                iconCls   : 'organize',
+                iconAlign : 'right',
+                ui        : 'decline'
+            }
+        ]
+    };
+    
+    var bbar = {                                                         //# 3
+        xtype    : 'toolbar',
+        docked   : 'bottom',
+        height   : 60,
+        defaults : {
+            iconMask : true
+        },
+        items : [                                                        //# 4
+            {
+                iconCls   : 'refresh',
+                iconAlign : 'top',
+                ui        : 'plain'
+            },
+            {
+                text      : 'search',
+                iconCls   : 'search',
+                ui        : 'drastic',
+                iconAlign : 'bottom'
+            }
+        ]
+    };
+    
+    Ext.create('Ext.Panel', {
+        fullscreen  : true,
+        defaultType : 'button',
+        defaults    : {
+        iconMask : true
+        },
+        layout : {
+            type : 'vbox',
+            pack : 'center',
+            align: 'center'
+        },
+        items : [
+            tbar,                                                         //# 5
+            bbar,
+            {                                                             //# 6
+                text      : 'generic',
+                width     : 150
+            },{
+                text      : 'compose', 
+                iconCls   : 'compose',
+                iconAlign : 'right',
+                ui        : 'action',
+                width     : 150
+            },{
+                text     : 'star',
+                iconCls  : 'star',
+                ui       : 'confirm',
+                width    : 150
+            }
+        ]
+    });
+
+
+    }
+});
+
+
+
+</script>
+
+</head>
+<body></body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Listing 7.8 List</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.require([
+            'Ext.data.Store',
+            'Ext.dataview.List'
+        ]);
+
+        Ext.define('MyModel', {
+            extend : 'Ext.data.Model',
+
+            config : {
+                fields : [
+                    'name',
+                    { name : 'twitter', type : 'string' }
+                ]
+            }
+        });
+
+        Ext.application({
+            name     : 'STIA',
+            viewport : {
+                autoMaximize : true
+            },
+            launch   : function () {
+
+                var store = Ext.create('Ext.data.Store', {
+                    model : 'MyModel',
+                    data  : [
+                        { name : 'Mitchell Simoens', twitter : 'SenchaMitch' },
+                        { name : 'Jay Garcia',       twitter : 'ModusJesus'  },
+                        { name : 'Anthony De Moss',  twitter : 'ademoss1'    }
+                    ]
+                });
+
+                var list = new Ext.dataview.List({
+                    fullscreen : true,
+                    store      : store,
+                    itemTpl    : [
+                        '{name} ',
+                        '<a href="http://www.twitter.com/{twitter}" target="_blank">',
+                            '@{twitter}',
+                        '</a>'
+                    ]
+                });
+
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

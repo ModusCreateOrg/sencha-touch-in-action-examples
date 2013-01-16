@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Listing 7.2 Remote Store</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.require([
+            'Ext.data.Store'
+        ]);
+
+        Ext.define('MyModel', {
+            extend : 'Ext.data.Model',
+
+            config : {
+                fields : [
+                    'name',
+                    { name : 'twitter', type : 'string' }
+                ]
+            }
+        });
+
+        Ext.application({
+            name   : 'STIA',
+            launch : function () {
+
+                var store = new Ext.data.Store({
+                    model    : 'MyModel',
+                    autoLoad : true,
+                    proxy    : {
+                        type   : 'ajax',
+                        url    : 'authors.php',
+                        reader : {
+                            type          : 'json',
+                            rootProperty  : 'authors',
+                            totalProperty : 'totalNumber'
+                        }
+                    }
+                });
+
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

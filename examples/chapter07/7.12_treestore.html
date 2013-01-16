@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Listing 7.12 Tree Store</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.require([
+            'Ext.data.Store',
+            'Ext.dataview.NestedList',
+            'Ext.MessageBox'
+        ]);
+
+        Ext.define('Author', {
+            extend : 'Ext.data.Model',
+
+            config : {
+                fields : [
+                    'text',
+                    'link'
+                ]
+            }
+        });
+
+        Ext.application({
+            name     : 'STIA',
+            viewport : {
+                autoMaximize : true
+            },
+            launch   : function () {
+
+                var store = new Ext.data.TreeStore({
+                    model    : 'Author',
+                    autoLoad : true,
+                    proxy    : {
+                        type  : 'ajax',
+                        url   : 'authors-tree.json'
+                    }
+                });
+
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

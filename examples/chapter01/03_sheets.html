@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Sheets</title>
+<link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+<script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+<script type="text/javascript">
+
+Ext.application({
+    launch : function() {
+        var autoDestroyListener = {
+            hide : function(sheet) {
+                sheet.destroy();
+            }
+        };
+
+        Ext.define('ListModel', {
+            extend : 'Ext.data.Model',
+            config : {
+                fields : ['firstName']
+            }
+        });
+
+        var data = [
+            {
+                firstName : 'Jay'
+            },
+            {
+                firstName : 'Anthony'
+            },
+            {
+                firstName : 'Sebastian'
+            },
+            {
+                firstName : 'Michael'
+            },
+            {
+                firstName : 'Marjan'
+            },
+            {
+                firstName : 'Blace'
+            }
+        ];
+
+        var store = Ext.create('Ext.data.Store', {
+            model    : 'ListModel',
+            data     : data,
+            autoLoad : true
+        });
+
+        var showGenericSheet = function() {
+            Ext.Viewport.add({
+                xtype       : 'sheet',
+                stretchX    : true,
+                height      : 220,
+                layout      : 'fit',
+                listeners   : autoDestroyListener,
+                bottom : 0,
+                items       : [
+                    {
+                        xtype  : 'toolbar',
+                        docked : 'top',
+                        title  : 'Sheets are panels!'
+                    },
+                    {
+                        xtype  : 'toolbar',
+                        docked : 'bottom',
+                        items  : [
+                            {
+                                text : 'Back',
+                                ui   : 'back'
+                            },
+                            {
+                                xtype : 'spacer'
+                            },
+                            {
+                                text    : 'Close',
+                                handler : function() {
+                                    this.up('sheet').hide();
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        xtype   : 'list',
+                        store   : store,
+                        itemTpl : '{firstName}'
+                    }
+                ]
+            }).show();
+        };
+
+        var showActionSheet = function() {
+            Ext.Viewport.add({
+                xtype     : 'actionsheet',
+                listeners : autoDestroyListener,
+                defaults  : {
+                    handler : function() {
+                        this.up('actionsheet').hide();
+                    }
+                },
+                items     : [
+                    {
+                        xtype  : 'component',
+                        height : 50,
+                        style  : 'color: #FFF; text-align: center; font-size: 1.2em;',
+                        html   : 'What do you want to do?'
+                    },
+                    {
+                        text : 'Add to home screen',
+                        ui   : 'confirm'
+                    },
+                    {
+                        text : 'Add bookmark'
+                    },
+                    {
+                        text : 'Meh, never mind!',
+                        ui   : 'decline'
+                    }
+                ]
+
+            }).show();
+        };
+
+        var showPicker = function() {
+
+            Ext.Viewport.add({
+                xtype     : 'picker',
+                useTitles : true,
+                slots     : [
+                    {
+                        name  : 'agegrp',
+                        title : 'Age group (years old)',
+                        data  : [
+                            {text : '1 - 10', value : 1},
+                            {text : '11 - 14', value : 2},
+                            {text : '15 - 18', value : 3},
+                            {text : '19 - 24', value : 4},
+                            {text : '25 - 31', value : 5},
+                            {text : '32 - 40', value : 6},
+                            {text : '41 - 50', value : 7},
+                            {text : '51 - 75', value : 8},
+                            {text : '75 - 100+', value : 9}
+                        ]
+                    }
+                ]
+            }).show();
+        };
+
+        var showDatePicker = function() {
+            Ext.Viewport.add({
+                xtype : 'datepicker'
+            }).show();
+        };
+
+        Ext.Viewport.add({
+            xtype       : 'container',
+            fullscreen  : true,
+            defaultType : 'button',
+            scrollable  : true,
+            layout      : 'vbox',
+            defaults    : {
+                flex  : 1,
+                style : 'margin-bottom: 10px;'
+            },
+            items       : [
+                {
+                    xtype  : 'toolbar',
+                    title  : 'Using Sheets',
+                    docked : 'top'
+                },
+                {
+                    text    : 'Show generic sheet',
+                    handler : showGenericSheet
+                },
+                {
+                    text    : 'Action Sheet',
+                    handler : showActionSheet
+                },
+                {
+                    text    : 'Picker',
+                    handler : showPicker
+                },
+                {
+                    text    : 'Date Picker',
+                    handler : showDatePicker
+                },
+                {
+                    text    : 'Ext.Msg.alert',
+                    handler : function() {
+                        Ext.Msg.alert(
+                                'Woah there cowboy!',
+                                'You were not supposed to press that button!'
+                        );
+                    }
+                },
+                {
+                    text    : 'Ext.Msg.confirm',
+                    handler : function() {
+                        Ext.Msg.confirm(
+                                'Are you sure?',
+                                'This will shut off the internet!',
+                                Ext.emptyFn
+                        );
+                    }
+                },
+                {
+                    text    : 'Ext.Msg.prompt',
+                    handler : function() {
+                        Ext.Msg.prompt(
+                                'Sorry dude!',
+                                'What is your name again?',
+                                Ext.emptyFn
+                        );
+                    }
+                }
+
+            ]
+        });
+    }
+});
+
+</script>
+
+</head>
+<body></body>
+</html>

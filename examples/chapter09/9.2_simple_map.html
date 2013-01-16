@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Chapter 8 - Listing 8.2</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+    <script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=true'></script>
+
+    <script type="text/javascript">
+        /**
+         * Sample code to show a simple example
+         * of the Map Component
+         */
+
+        Ext.application({
+            glossOnIcon         : false,
+            icon                : 'icon.png',
+            tabletStartupScreen : 'tablet_startup.png',
+            phoneStartupScreen  : 'phone_startup.png',
+
+            launch : function() {
+
+                new Ext.Map({
+                    fullscreen         : true,
+                    useCurrentLocation : true,
+                    mapOptions         : {
+                        mapTypeControl  : false
+                    }
+                });
+
+
+            }
+        });
+
+    </script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Chapter 6 - Listing 6.2</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            launch : function() {
+                var myActions = Ext.create('Ext.ActionSheet', {
+                    hidden   : true,
+                    defaults : {
+                        handler : function(btn) {               // #1
+                            btn.parent.hide();
+                        }
+                    },
+                    items    : [
+                        {
+                            xtype  : 'component',               // #2
+                            height : 45,
+                            html   : 'What do you want to do?',
+                            style  : 'color: #FFF; text-align: center; font-size: 1.2em;'
+
+                        },
+                        {
+                            text : 'Add to home screen',        // #3
+                            ui   : 'confirm'
+                        },
+                        {
+                            text : 'Add bookmark'
+                        },
+                        {
+                            text : 'Meh, never mind!',
+                            ui   : 'decline'
+                        }
+                    ]
+                });
+                Ext.Viewport.add(myActions).show();
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

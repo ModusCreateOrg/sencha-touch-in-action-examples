@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            launch : function() {
+                var floatingPanel = Ext.create('Ext.Panel', {       // #1
+                    height    : 200,
+                    width     : 200,
+                    draggable : true,                               // #2
+                    floating  : true,                               // #3
+                    html      : 'Some help could go here.',
+                    left      : 50,                                 // #4
+                    top       : 50,
+                    items     : [
+                        {
+                            xtype  : 'toolbar',
+                            docked : 'top',
+                            title  : 'Drag me!'
+                        }
+                    ]
+                });
+
+                Ext.Viewport.add(floatingPanel);                   // #5
+
+                var fsPanel = Ext.create('Ext.Panel', {
+                    fullscreen : true,
+                    style      : 'background-color: #CCF;',
+                    html       : 'Full screen Panel'
+                });
+            }
+        });
+
+
+    </script>
+
+</head>
+<body></body>
+</html>

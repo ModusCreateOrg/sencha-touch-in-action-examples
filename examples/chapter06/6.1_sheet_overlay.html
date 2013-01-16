@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Chapter 6 - Listing 6.1</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+        /*
+         Sample code for a simple sheet
+         */
+        Ext.application({
+            launch : function() {
+                var buttonHandler = function() {
+                    Ext.Viewport.add({
+                        xtype         : 'sheet',
+                        height        : 130,
+                        hideOnMaskTap : true,
+                        hidden        : true,
+                        enter         : 'bottom',
+                        style         : 'color:white; ',
+                        html          : 'Place your additional information right here.<br />It can be multi line and everything!',
+                        items         : {
+                            docked  : 'bottom',
+                            xtype   : 'button',
+                            text    : 'Close',
+                            handler : function(button) {
+                                button.up('sheet').hide();
+                            }
+                        }
+                    }).show();
+                };
+                Ext.create('Ext.Panel', {
+                    fullscreen : true,
+                    layout     : {
+                        type  : 'vbox',
+                        align : 'center',
+                        pack  : 'middle'
+                    },
+                    items      : {
+                        xtype   : 'button',
+                        text    : 'Open the overlay',
+                        handler : buttonHandler
+                    }
+                });
+            }
+        });
+
+    </script>
+</head>
+<body></body>
+</html>

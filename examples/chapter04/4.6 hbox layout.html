@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title></title>
+    <link rel='stylesheet' href='../../touch/resources/css/sencha-touch.css' type='text/css'>
+    <script type='text/javascript' src='../../touch/sencha-touch-all-debug.js'></script>
+
+    <script type='text/javascript'>
+
+        Ext.application({
+            launch : function() {
+                var myContainer = Ext.create('Ext.Container', {
+                    fullscreen : true,
+                    layout     : {
+                        type  : 'hbox',
+                        pack  : 'start',
+                        align : 'start'
+                    },
+                    defaults   : {
+                        style : 'border: 1px solid red;'
+                    },
+                    items      : [
+                        {
+                            html : 'Panel 1',
+                            height : 100
+                        },
+                        {
+                            html : 'Panel 2',
+                            height : 75,
+                            width : 100
+                        },
+                        {
+                            html : 'Panel 3',
+                            height : 200
+                        }
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

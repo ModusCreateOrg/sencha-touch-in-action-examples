@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Video</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+
+            launch : function() {
+                Ext.Viewport.add({
+
+                    fullscreen : true,
+                    layout     : {
+                        type : 'vbox',
+                        pack : 'center'
+                    },
+                    items      : [
+                        {
+                            xtype : 'toolbar',
+                            title : 'Video',
+                            docked  : 'top'
+                        },
+                        {
+                            xtype  : 'video',
+                            url    : 'movie.m4v',
+                            loop   : true,
+                            width  : 854,
+                            height : 480
+                        }
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

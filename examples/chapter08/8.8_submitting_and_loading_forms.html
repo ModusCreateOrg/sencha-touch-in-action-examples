@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title>Chapter 7 - Listing 7.8</title>
+    <link rel='stylesheet' href='../../touch/resources/css/sencha-touch.css' type='text/css'>
+    <script type='text/javascript' src='../../touch/sencha-touch-all-debug.js'></script>
+    <script type='text/javascript'>
+        /*
+         Sample code for loading and saving forms.
+         This sample requires the 'formload.json' and 'success.json' files.
+         */
+
+        Ext.application({
+            launch : function () {
+                var formLoad = function () {
+                    PersonModel.load(123, {
+                        success : function (theRecord) {
+                            // on a successfull load, take the record we got from the backend
+                            // (the record is an instance of our model), and load it into the form
+                            myForm.setRecord(theRecord);
+                        }
+                    });
+                };
+
+                // handle submitting the form. This method is triggered by the submit button
+                var formSubmit = function () {
+                    // calling the submit function works the same as the Ext.Ajax function.
+                    // we give it a url, a waitMsg, which only flashes for a split second since the
+                    // load is so fast, and event handlers.
+                    myForm.submit({
+                        url     : 'success.json',
+                        success : function (form, response) {
+                            // YAY! our form submitted. Tell the user
+                            Ext.Msg.alert('Success', response.msg);
+                        },
+                        failure : function (form, response) {
+                            // OH NOES. The submit failed. Tell the user
+                            Ext.Msg.alert('Failure', response.msg);
+                        }
+                    });
+                };
+
+                // setup the model. This is needed so we can load the form
+                // Notice the use of the proxy option. This is currently undocumented but works.
+                // future versions of SenchaTouch will document this once code from Ext4 has been
+                // ported over.
+                var PersonModel = Ext.define('Person', {
+                    extend : 'Ext.data.Model',
+                    config : {
+                        fields : [
+                            'firstname',
+                            'lastname',
+                            'description',
+                            'size',
+                            'partydate'
+                        ],
+                        proxy  : {
+                            type   : 'ajax', // perform an ajax load for the data
+                            url    : 'formload.json', // get the data from this url. a static file
+                            reader : 'json'            // let the proxy know the data is json formatted
+                        }
+                    }
+                });
+
+                // setup the first fieldset, which is on the top of the left column
+                var fieldset1 = {
+                    xtype        : 'fieldset',
+                    title        : 'Personal Info',
+                    instructions : 'Tell us who you are.<br />The more detail the better',
+                    items        : [
+                        {
+                            xtype       : 'textfield',
+                            label       : 'First',
+                            name        : 'firstname',
+                            placeHolder : 'Enter your first name'
+                        },
+                        {
+                            xtype       : 'textfield',
+                            label       : 'Last',
+                            name        : 'lastname',
+                            placeHolder : 'Enter your last name'
+                        }
+                    ]
+                };
+                // setup the second fieldset, which is at the bottom of the left column
+                var fieldset2 = {
+                    xtype        : 'fieldset',
+                    title        : 'Party Info',
+                    instructions : 'Describe your party so people know what they\'re attending',
+                    items        : [
+                        {
+                            xtype : 'textareafield',
+                            label : 'Description'
+                        }
+                    ]
+                };
+                // setup the third fieldset, which is at the top of the right column
+                var fieldset3 = {
+                    xtype        : 'fieldset',
+                    title        : 'Party Size',
+                    instructions : 'Tell us how many people you\'re bringing',
+                    items        : [
+                        {
+                            xtype : 'radiofield',
+                            name  : 'size',
+                            label : 'Just Me',
+                            value : 'small'
+                        },
+                        {
+                            xtype : 'radiofield',
+                            name  : 'size',
+                            label : 'A few people',
+                            value : 'medium'
+                        },
+                        {
+                            xtype : 'radiofield',
+                            name  : 'size',
+                            label : 'What\'s my limit?',
+                            value : 'large'
+                        }
+                    ]
+                };
+
+                // setup the fourth fieldset, which is at the bottom of the right column
+                var fieldset4 = {
+                    xtype        : 'fieldset',
+                    title        : 'Dates',
+                    instructions : 'When is this happening?',
+                    items        : [
+                        {
+                            xtype : 'datepickerfield',
+                            label : 'Party Date',
+                            name  : 'partydate'
+                        }
+                    ]
+                };
+                // create the form panel with an hbox layout.
+                // give it two containers, one for each column, and fill the containers
+                // with the fieldsets
+                var myForm = Ext.create('Ext.form.Panel', {
+                    fullscreen : true,
+                    scrollable : 'vertical',
+                    layout     : {
+                        type  : 'hbox',
+                        align : 'stretch'
+                    },
+                    defaults   : {
+                        flex  : 1,
+                        style : 'padding: 5px;'
+                    },
+                    items      : [
+                        {
+                            xtype  : 'toolbar',
+                            title  : 'Party Organizer 2000',
+                            docked : 'top',
+                            items  : [
+                                // button to load the form
+                                {
+                                    xtype   : 'button',
+                                    text    : 'Load Form',
+                                    handler : formLoad
+                                },
+                                // button to save the form
+                                {
+                                    xtype   : 'button',
+                                    text    : 'Submit Form',
+                                    handler : formSubmit
+                                }
+                            ]
+
+                        },
+                        {
+                            xtype : 'container',
+                            items : [
+                                fieldset1,
+                                fieldset2
+                            ]
+                        },
+                        {
+                            xtype : 'container',
+                            items : [
+                                fieldset3,
+                                fieldset4
+                            ]
+                        }
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

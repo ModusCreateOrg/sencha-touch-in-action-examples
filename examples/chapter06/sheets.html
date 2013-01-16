@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Sheets</title>
+	<link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+	<script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+<script type="text/javascript">
+
+Ext.application({
+    launch : function() {
+        var hideSheetFromToolBarBtn = function() {
+            this.parent.parent.hide();
+        };
+
+		Ext.define("list", {
+			extend: "Ext.data.Model",
+			config: {
+				fields : ['firstName']
+			}
+		});
+
+        var data = [
+            {
+                firstName : 'Jay'
+            },
+            {
+                firstName : 'Anthony'
+            },
+            {
+                firstName : 'Sebastian'
+            },
+            {
+                firstName : 'Michael'
+            },
+            {
+                firstName : 'Marjan'
+            },
+            {
+                firstName : 'Blace'
+            }
+        ];
+
+        var store = Ext.create("Ext.data.Store", {
+            model    : 'list',
+            data     : data,
+        });
+
+
+        var showGenericSheet = function() {
+            var mySheet = Ext.create("Ext.Sheet", {
+                stretchX    : true,
+                height      : 220,
+                layout      : 'fit',
+				hidden      : true,
+                items : [
+					{
+                        xtype : 'toolbar',
+                        docked  : 'top',
+                        title : 'Sheets are panels!'
+                    },
+                    {
+                        xtype : 'toolbar',
+                        docked  : 'bottom',
+                        items : [
+                            {
+                                text : 'Back',
+                                ui   : 'back'
+                            },
+                            {
+                                xtype : 'spacer'
+                            },
+                            {
+                                text    : 'Close',
+                                handler : hideSheetFromToolBarBtn
+                            }
+                        ]
+                    },
+                    {
+                        xtype   : 'list',
+                        store   : store,
+                        itemTpl : '{firstName}'
+                    }
+                ]
+            });
+			
+			Ext.Viewport.add(mySheet).show();
+        };
+
+        var showActionSheet = function() {
+            var myActions = Ext.create("Ext.ActionSheet", {
+				hidden      : true,
+                defaults  : {
+                    handler : function(btn) {
+						btn.parent.hide();
+                    }
+                },
+                items : [
+                    {
+                        xtype  : 'component',
+                        height : 50,
+                        style  : 'color: #FFF; text-align: center; font-size: 1.2em;',
+                        html   : 'What do you want to do?'
+                    },
+                    {
+                        text : 'Add to home screen',
+                        ui   : 'confirm'
+                    },
+                    {
+                        text : 'Add bookmark'
+                    },
+                    {
+                        text : 'Meh, never mind!',
+                        ui   : 'decline'
+                    }
+                ]
+
+            });
+
+			Ext.Viewport.add(myActions).show();
+        };
+
+        var myPanel = Ext.create("Ext.Panel", {
+            fullscreen  : true,
+            defaultType : 'button',
+            scroll      : 'vertical',
+            layout      : {
+                type  : 'vbox',
+                align : 'stretch'
+            },
+            dockedItems : [
+                {
+                    xtype : 'toolbar',
+                    title : 'Using Sheets',
+                    dock  : 'top'
+                }
+            ],
+            defaults : {
+                flex   : 1,
+                style  : 'margin-bottom: 10px;'
+            },
+            items : [
+                {
+                    text    : 'Show generic sheet',
+                    handler : showGenericSheet
+                },
+
+                {
+                    text    : 'Action Sheet',
+                    handler : showActionSheet
+                },
+
+
+                
+
+            ]
+        });
+    }
+});
+
+</script>
+
+</head>
+<body></body>
+</html>

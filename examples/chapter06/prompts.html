@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Prompts</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            launch : function() {
+                var myPanel = new Ext.Panel({
+                    fullscreen  : true,
+                    defaultType : 'button',
+                    scroll      : 'vertical',
+                    layout      : {
+                        type  : 'vbox',
+                        align : 'stretch'
+                    },
+                    dockedItems : [
+                        {
+                            xtype : 'toolbar',
+                            title : 'Using Sheets',
+                            dock  : 'top'
+                        }
+                    ],
+                    defaults    : {
+                        flex  : 1,
+                        style : 'margin-bottom: 10px;'
+                    },
+                    items       : [
+                        {
+                            text    : 'Ext.Msg.show',
+                            handler : function() {
+                                Ext.Msg.show({
+                                    title   : 'Southpark:',
+                                    message : 'Ice Ice Timmy!'
+                                });
+                            }
+                        },
+                        {
+                            text    : 'Ext.Msg.alert',
+                            handler : function() {
+                                Ext.Msg.alert(
+                                        'Woah there cowboy!',
+                                        'You were not supposed to press that button!'
+                                );
+                            }
+                        },
+                        {
+                            text    : 'Ext.Msg.confirm',
+                            handler : function() {
+                                Ext.Msg.confirm(
+                                        'Are you sure?',
+                                        'This will shut off the internet!',
+                                        function(buttonID, value, opts) {
+                                            if (buttonID === "no") {
+                                                // whew. Threat averted!
+                                            }
+                                            else {
+                                                // oh noes! the internet is going down
+                                            }
+                                        },
+                                        this
+                                );
+                            }
+                        },
+                        {
+                            text    : 'Ext.Msg.confirm (multi-button)',
+                            handler : function() {
+                                var msgBox = Ext.Msg.show({
+                                    title   : 'Rich Confirm',
+                                    message : 'Adding extra buttons',
+                                    buttons : Ext.MessageBox.YESNOCANCEL,
+                                    fn      : function(btn) {
+                                        console.log(btn);
+                                    }
+                                });
+                            }
+                        },
+                        {
+                            text    : 'Ext.Msg.prompt',
+                            handler : function() {
+                                Ext.Msg.prompt(
+                                        "Sorry dude!",
+                                        "What is your name again?",
+                                        Ext.emptyFn,
+                                        this,
+                                        true,
+                                        "Anthony",
+                                        {
+                                            maxlength      : 180,
+                                            autocapitalize : true
+                                        }
+                                );
+                            }
+                        },
+                        {
+                            text    : 'Ext.Msg.prompt (rich prompt)',
+                            handler : function() {
+                                Ext.Msg.show({
+                                    //width: 300,
+                                    title     : 'Enter Address here. really really long text goes here',
+                                    message   : 'Please enter your address:',
+                                    multiLine : 300,
+                                    prompt    : { maxlength : 180, autocapitalize : true, placeholder : "This is barely readable" },
+                                    buttons   : [
+                                        {
+                                            text : 'hell no', itemId : "h", ui : "action"
+                                        },
+                                    ],
+                                    fn        : Ext.emptyFn,
+                                    value     : "hello"
+                                });
+                            }
+                        },
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

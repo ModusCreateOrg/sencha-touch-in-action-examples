@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            launch : function() {
+
+                Ext.Viewport.add({
+                    xtype          : 'tabpanel',
+                    fullscreen     : true,
+                    tabBarPosition : 'bottom',
+                    items          : [
+                        {
+                            title   : 'Panel 1',
+                            style   : 'background-color: #CAA; -webkit-backface-visibility: hidden;',
+                            iconCls : 'home',
+                            items   : [
+                                {
+                                    xtype  : 'toolbar',
+                                    docked : 'top',
+                                    title  : 'Panel 1'
+                                }
+                            ]
+                        },
+                        {
+                            title   : 'Panel 2',
+                            style   : 'background-color: #AAC; -webkit-backface-visibility: hidden;',
+                            iconCls : 'user',
+                            items   : [
+                                {
+                                    xtype  : 'toolbar',
+                                    docked : 'top',
+                                    title  : 'Panel 2'
+                                }
+                            ]
+                        }
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

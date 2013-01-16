@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+<script type="text/javascript">
+
+Ext.application({
+    launch: function() {
+        var bodyWidth = Ext.getBody().getWidth();
+
+        var panel, selectFormPanel;
+
+        var buildDocks = function() {
+
+            return {
+                top :  {
+                    xtype  : 'container',
+                    dock   : 'top',
+                    style  : 'border-bottom: 1px solid; background-color: #F99;',
+                    height : 30,
+                    html   : 'Top dock'
+                },
+                bottom : {
+                    xtype  : 'container',
+                    dock   : 'bottom',
+                    style  : 'border-top: 1px solid; background-color: #9F9;',
+                    height : 30,
+                    html   : 'Bottom dock'
+                },
+                left : {
+                    xtype : 'container',
+                    dock  : 'left',
+                    width : 50,
+                    style : 'border-right: 1px solid; background-color: #99F;',
+                    html  : 'Left dock'
+                },
+                right : {
+                    xtype : 'container',
+                    dock  : 'right',
+                    width : 50,
+                    style : 'border-left: 1px solid; background-color: #FF9;',
+                    html  : 'Right dock'
+                }
+            }
+        };
+
+
+        var buildSelectField = function(label) {
+
+            return new Ext.form.Select({
+                label   : label,
+                name    : label,
+                options : [
+                    {
+                        text  : '',
+                        value : null
+                    },
+                    {
+                        text  : 'Top dock',
+                        value : 'top'
+                    },
+                    {
+                        text  : 'Bottom dock',
+                        value : 'bottom'
+                    },
+                    {
+                        text  : 'Left dock',
+                        value : 'left'
+                    },
+                    {
+                        text  : 'Right dock',
+                        value : 'right'
+                    }
+                ],
+                listeners: {
+                    change : function(currentField, value) {
+                        var selectFields = selectFormPanel.items,
+                            dupLocator   = {},
+                            tmpValue;
+
+                        selectFields.each(function(field) {
+                            tmpValue = field.getValue();
+
+                            if (! tmpValue){
+                                return true;
+                            }
+
+                            if (! dupLocator[tmpValue]) {
+                                dupLocator[tmpValue] = true;
+                            }
+                            else {
+
+                                var currentSelectedOption;
+                                Ext.each(currentField.options, function(opt) {
+                                    if (opt.data.value === value) {
+                                        currentSelectedOption = opt.data.text;
+                                        return false;
+                                    }
+                                });
+
+                                Ext.Msg.alert('Error!', '"' + currentSelectedOption +'" is already selected!');
+                                currentField.setValue('');
+                            }
+                        });
+                    }
+                }
+            });
+        };
+
+        var buildPanel = function(docks) {
+            docks = docks || [];
+
+
+
+            selectFormPanel = new Ext.form.Panel({
+                style : 'padding: 0px;',
+                items : [
+                    buildSelectField('#1'),
+                    buildSelectField('#2'),
+                    buildSelectField('#3'),
+                    buildSelectField('#4')
+                ]
+            });
+
+            return new Ext.Panel({
+                fullscreen  : true,
+                bodyStyle   : 'padding: 10px;',
+                items       : [
+                    {
+                        html   : 'Current pattern: ' + docks.toString(),
+                        style  : 'font-size: 1.2em;',
+                        height : 50
+                    },
+                    selectFormPanel,
+                    {
+                        xtype   : 'button',
+                        text    : 'GO!',
+                        ui      : 'confirm',
+                        height  : 50,
+                        handler : function() {
+                            var selectFields = selectFormPanel.items,
+                                dockConfigs  = buildDocks(),
+                                dockedItems  = [],
+                                selectedDock;
+
+                             panel.dockedItems.each(function(dockedItem) {
+                                panel.removeDocked(dockedItem, true);
+                            });
+
+                            selectFields.each(function(field) {
+                                selectedDock = field.getValue();
+
+                                if (! selectedDock){
+                                    return true;
+                                }
+
+                                panel.addDocked(dockConfigs[selectedDock])
+                            });
+
+                            panel.doComponentLayout();
+                        }
+                    },
+                    {
+                        xtype   : 'button',
+                        text    : 'Reset',
+                        height  : 50,
+                        ui      : 'decline',
+                        style   : 'margin-top: 3px;',
+                        handler : function() {
+                            panel.destroy();
+                            panel = buildPanel();
+                        }
+                    }
+                ]
+            });
+
+        };
+
+
+
+
+        panel = buildPanel();
+    }
+});
+
+</script>
+
+</head>
+<body></body>
+</html>

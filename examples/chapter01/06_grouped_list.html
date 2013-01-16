@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Grouped List</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            launch : function() {
+                var name; // <-- used for the selection handler
+                Ext.define('ListModel', {
+                    extend : 'Ext.data.Model',
+                    config : {
+                        fields : ['firstName', 'lastName']
+                    }
+                });
+
+                var data = [
+                    {
+                        firstName : 'Jay',
+                        lastName  : 'Garcia'
+                    },
+                    {
+                        firstName : 'Anthony',
+                        lastName  : 'DeMoss'
+                    },
+                    {
+                        firstName : 'Sebastian',
+                        lastName  : 'Stirling'
+                    },
+                    {
+                        firstName : 'Michael',
+                        lastName  : 'Stephens'
+                    },
+                    {
+                        firstName : 'Marjan',
+                        lastName  : 'Bace'
+                    },
+                    {
+                        firstName : 'Blaise',
+                        lastName  : 'Bace'
+                    },
+                    {
+                        firstName : 'Mitchell',
+                        lastName  : 'Simoens'
+                    },
+                    {
+                        firstName : 'Mary',
+                        lastName  : 'Piergies'
+                    },
+                    {
+                        firstName : 'Troy',
+                        lastName  : 'Mott'
+                    },
+                    {
+                        firstName : 'Maureen',
+                        lastName  : 'Spencer'
+                    },
+                    {
+                        firstName : 'Candace',
+                        lastName  : 'Gilhooley'
+                    },
+                    {
+                        firstName : 'Christina',
+                        lastName  : 'Rudloff'
+                    }
+                ];
+
+                var store = Ext.create('Ext.data.Store', {
+                    model          : 'ListModel',
+                    data           : data,
+                    sorters        : 'lastName',
+                    getGroupString : function(rec) {
+                        return rec.get('lastName')[0];
+                    }
+                });
+
+                var showActionSheet = function(thisView, idx, element, record) {
+                    Ext.Viewport.add({
+                        xtype     : 'actionsheet',
+                        listeners : {
+                            hide : function(sheet) {
+                                sheet.destroy();
+                            }
+                        },
+                        defaults  : {
+                            handler : function() {
+                                this.up('actionsheet').hide();
+                            }
+                        },
+                        items     : [
+                            {
+                                xtype  : 'component',
+                                height : 70,
+                                style  : 'color: #FFF; text-align: center; font-size: 1.2em;',
+                                html   : 'Shall we invite ' + record.get('firstName') + ' ' + record.get('lastName') + '?'
+                            },
+                            {
+                                text : 'Invite to party',
+                                ui   : 'confirm'
+                            },
+                            {
+                                text : 'Meh, never mind!',
+                                ui   : 'decline'
+                            }
+                        ]
+                    }).show();
+                };
+
+                Ext.Viewport.add({
+                    fullscreen : true,
+                    layout     : 'fit',
+                    items      : [
+                        {
+                            xtype  : 'toolbar',
+                            docked : 'top',
+                            title  : 'A grouped List view'
+                        },
+                        {
+                            xtype            : 'list',
+                            store            : store,
+                            itemTpl          : '{lastName}, {firstName}',
+                            indexBar         : true,
+                            grouped          : true,
+                            onItemDisclosure : showActionSheet
+                        }
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

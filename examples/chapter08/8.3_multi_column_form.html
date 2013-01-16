@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title>Chapter 7</title>
+    <link rel='stylesheet' href='../../touch/resources/css/sencha-touch.css' type='text/css'>
+    <script type='text/javascript' src='../../touch/sencha-touch-all-debug.js'></script>
+    <script type='text/javascript'>
+        /*
+         Sample code for multi-columns forms.
+         */
+        Ext.application({
+            launch : function() {
+                // setup the first fieldset, which is on the top of the left column
+                var fieldset1 = {
+                    xtype        : 'fieldset',
+                    title        : 'Personal Info',
+                    instructions : 'Tell us who you are.<br />The more detail the better',
+                    items        : [
+                        {
+                            xtype       : 'textfield',
+                            label       : 'First',
+                            name        : 'firstname',
+                            placeHolder : 'Enter your first name'
+                        },
+                        {
+                            xtype       : 'textfield',
+                            label       : 'Last',
+                            name        : 'lastname',
+                            placeHolder : 'Enter your last name'
+                        }
+                    ]
+                };
+                // setup the second fieldset, which is at the bottom of the left column
+                var fieldset2 = {
+                    xtype        : 'fieldset',
+                    title        : 'Party Info',
+                    instructions : 'Describe your party so people know what they\'re attending',
+                    items        : [
+                        {
+                            xtype : 'textareafield',
+                            label : 'Description'
+                        }
+                    ]
+                };
+                // setup the third fieldset, which is at the top of the right column
+                var fieldset3 = {
+                    xtype        : 'fieldset',
+                    title        : 'Party Size',
+                    instructions : 'Tell us how many people you\'re bringing',
+                    items        : [
+                        {
+                            xtype : 'radiofield',
+                            name  : 'size',
+                            label : 'Just Me',
+                            value : 'small'
+                        },
+                        {
+                            xtype : 'radiofield',
+                            name  : 'size',
+                            label : 'A few people',
+                            value : 'medium'
+                        },
+                        {
+                            xtype : 'radiofield',
+                            name  : 'size',
+                            label : 'What\'s my limit?',
+                            value : 'large'
+                        }
+                    ]
+                };
+                // setup the fourth fieldset, which is at the bottom of the right column
+                var fieldset4 = {
+                    xtype        : 'fieldset',
+                    title        : 'Dates',
+                    instructions : 'When is this happening?',
+                    items        : [
+                        {
+                            xtype : 'datepickerfield',
+                            label : 'Party Date',
+                            name  : 'partydate'
+                        }
+                    ]
+                };
+                // create the form panel with an hbox layout.
+                // give it two containers, one for each column, and fill the containers
+                // with the fieldsets
+                var myPanel = Ext.create('Ext.form.Panel', {
+                    fullscreen : true,
+                    scrollable : 'vertical',
+                    layout     : {
+                        type  : 'hbox',
+                        align : 'stretch'
+                    },
+                    defaults   : {
+                        flex  : 1,
+                        style : 'padding: 5px;'
+                    },
+                    items      : [
+                        {
+                            xtype  : 'toolbar',
+                            title  : 'Party Organizer 2000',
+                            docked : 'top'
+                        },
+                        {
+                            xtype : 'container',
+                            items : [
+                                fieldset1,
+                                fieldset2
+                            ]
+                        },
+                        {
+                            xtype : 'container',
+                            items : [
+                                fieldset3,
+                                fieldset4
+                            ]
+                        }
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

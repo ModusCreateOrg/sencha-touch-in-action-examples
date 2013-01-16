@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title>Chapter 7 - Listing 7.2</title>
+    <link rel='stylesheet' href='../../touch/resources/css/sencha-touch.css' type='text/css'>
+    <script type='text/javascript' src='../../touch/sencha-touch-all-debug.js'></script>
+    <script type='text/javascript'>
+        /*
+         Sample code to dynamically load a select field.
+         This sample requires the 'getPersons.json' file which contains the data to load.
+         */
+        Ext.application({
+            launch : function () {
+
+                // define the model for our data
+                Ext.define('Person', {
+                    extend : 'Ext.data.Model',
+                    config : {
+                        fields : [
+                            // { name: 'text' },
+                            // { name: 'value' },
+                            { name : 'name' },
+                            { name : 'pID' }
+                        ]
+                    }
+                });
+                var peopleStore = Ext.create('Ext.data.Store', {
+                    model    : 'Person',
+                    autoLoad : true,
+                    proxy    : {
+                        type   : 'ajax',
+                        url    : 'getPersons.json',
+                        reader : {
+                            type         : 'json',
+                            rootProperty : 'data'
+                        }
+                    }
+                });
+                // build the form with the select field that points to the store
+                var myPanel = Ext.create('Ext.form.Panel', {
+                    fullscreen : true,
+                    items      : [
+                        {
+                            xtype  : 'toolbar',
+                            title  : 'Tell us about yourself.',
+                            docked : 'top'
+                        },
+                        {
+                            xtype        : 'selectfield',
+                            label        : 'Select Name',
+                            valueField   : 'pID',
+                            displayField : 'name',
+                            store        : peopleStore
+                        }
+                    ]
+                });
+            }
+        });
+        
+
+
+
+    </script>
+
+</head>
+<body></body>
+</html>
+
+        
+        

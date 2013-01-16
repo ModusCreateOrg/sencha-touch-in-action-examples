@@ -1,0 +1,67 @@
+{
+
+    "name": "App",
+
+    "indexHtmlPath": "index.html",
+
+    "url": null,
+
+    "js": [
+        {
+            "path": "touch/sencha-touch.js"
+        },
+        {
+            "path": "app.js",
+            "bundle": true,
+            "update": "delta"
+        }
+    ],
+
+    "css": [
+        {
+            "path": "resources/css/app.css",
+            "update": "delta"
+        }
+    ],
+
+
+    "appCache": {
+
+        "cache": [
+            "index.html"
+        ],
+
+        "network": [
+            "*"
+        ],
+        "fallback": []
+    },
+
+    "resources": [
+        "resources/images",
+        "resources/icons",
+        "resources/startup"
+    ],
+
+    "ignore": [
+        "\.svn$"
+    ],
+
+    "archivePath": "archive",
+
+    "buildPaths": {
+        "testing": "build/testing",
+        "production": "build/production",
+        "package": "build/package",
+        "native": "build/native"
+    },
+
+    "buildOptions": {
+        "product": "touch",
+        "minVersion": 3,
+        "debug": false,
+        "logger": false
+    },
+
+    "id": "848b7cfc-ef3c-4420-8b33-cc10297af2c6"
+}

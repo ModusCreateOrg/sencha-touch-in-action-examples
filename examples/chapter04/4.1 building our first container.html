@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+Ext.application({
+    launch : function() {
+var loginContainer = Ext.create('Ext.Container', {
+    itemId     : 'loginContainer',
+    fullscreen : true,
+    items      : [
+        {
+            xtype       : 'textfield',
+            label       : 'Login',
+            placeHolder : 'Enter Username Here'
+        },
+        {
+            xtype       : 'textfield',
+            label       : 'Organization',
+            itemId      : 'orgField',
+            placeHolder : 'Enter Your Organization Here'
+        },
+        {
+            xtype       : 'textfield',
+            label       : 'Password',
+            placeHolder : 'Enter Password Here'
+        }
+    ]
+});
+    }
+});
+
+var container = Ext.ComponentQuery.query('#loginContainer')[0];
+container.remove('orgField');
+
+
+    </script>
+
+</head>
+<body></body>
+</html>

@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Sencha Touch in Action Chapter 10</title>
+    <link rel="stylesheet" type="text/css" href="../../touch/resources/css/sencha-touch.css" />
+    <script type="text/javascript" src="../../touch/sencha-touch-all.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var BaseCar = function(config) {
+        this.octaneRequired = 86;
+
+        this.shiftTo = function(gear) {
+            this.gear = gear;
+        };
+
+        this.shiftTo('park');
+    };
+
+    BaseCar.prototype = {
+        engine    : 'I4',
+        turbo     : false,
+        wheels    : 'basic',
+        getEngine : function() {
+            return this.engine;
+        },
+        drive     : function() {
+            console.log("Vrrrrooooooom - I'm driving!");
+        }
+    };
+
+    var PremiumCar =function() {
+        PremiumCar.superclass.constructor.call(this);
+        this.octaneRequired = 93;
+    };
+
+    PremiumCar.prototype   = new BaseCar();
+    PremiumCar.superclass  = BaseCar.prototype;
+    
+    PremiumCar.prototype.turbo  =  true;
+    PremiumCar.prototype.wheels = 'premium';
+
+    PremiumCar.getEngine = function() {
+        return 'Turbo ' + this.engine;
+    };
+
+    PremiumCar.prototype.drive = function() {
+        this.shiftTo('drive');
+        PremiumCar.superclass.drive.call(this);
+    };
+
+//    var PremiumCar = function() {
+//        PremiumCar.superclass.constructor.apply(this, arguments);
+//        this.octaneRequired = 93;
+//    };
+//
+//    Ext.extend(PremiumCar, BaseCar, {
+//        turbo       : true,
+//        wheels      : 'premium',
+//        stereo      : '5.1',
+//        //@Override
+//        getEngine   : function() {
+//            return this.engine + ' Turbo';
+//        },
+//        drive       : function() {
+//            PremiumCar.superclass.drive.call(this);
+//            this.shiftTo('drive');
+//            console.log('The turbo makes a big difference!');
+//        }
+//    });
+
+var myFastCar = new PremiumCar();
+myFastCar.drive();
+console.log(myFastCar.getEngine());
+
+console.log('myFastCar contents:');
+console.dir(myFastCar);
+
+</script>
+</body>
+</html>
+

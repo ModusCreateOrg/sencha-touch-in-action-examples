@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title>Chapter 7 - Listing 7.1</title>
+    <link rel='stylesheet' href='../../touch/resources/css/sencha-touch.css' type='text/css'>
+    <script type='text/javascript' src='../../touch/sencha-touch-all-debug.js'></script>
+
+    <script type='text/javascript'>
+        /*
+         Sample code for a simple form
+         */
+        Ext.application({
+            launch : function() {
+                var myForm = Ext.create('Ext.form.FormPanel', {
+                    fullscreen : true,
+                    items      : [
+                        {
+                            xtype       : 'textfield',
+                            label       : 'First',
+                            name        : 'firstName',
+                            placeHolder : 'Enter First Name Here'
+                        },
+                        {
+                            xtype       : 'textfield',
+                            label       : 'Last',
+                            name        : 'lastName',
+                            placeHolder : 'Enter Last Name Here'
+                        },
+                        {
+                            xtype       : 'selectfield',
+                            label       : 'Status',
+                            name        : 'inviteStatus',
+                            placeholder : 'nothing',
+                            options     : [
+                                {
+                                    text  : 'Undecided',
+                                    value : 'undecided'
+                                },
+                                {
+                                    text  : 'Accepted',
+                                    value : 'accept'
+                                },
+                                {
+                                    text  : 'Declined',
+                                    value : 'decline'
+                                }
+                            ]
+                        }
+                    ]
+                });
+            }
+        });
+
+    </script>
+</head>
+<body></body>
+</html>

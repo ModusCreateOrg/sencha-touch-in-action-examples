@@ -1,0 +1,13 @@
+[
+    {
+        "firstname"   : "Anthony",
+        "lastname"    : "De Moss",
+        "description" : "Sencha Touch In Action Launch Party!!",
+        "size"        : "medium",
+        "partydate"   : {
+            "year"  : 2011,
+            "month" : 2,
+            "day"   : 23
+        }
+    }
+]

@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+<script type="text/javascript">
+
+Ext.application({
+    launch: function() {
+        var toolbar = {
+            xtype : 'toolbar',
+            dock  : 'top',
+            items : [
+                {
+                    xtype : 'button',
+                    text  : 'Submit'
+                },
+                {
+                    xtype : 'spacer'
+                },
+                {
+                    xtype : 'segmentedbutton',
+                    items : [
+                        {
+                            text : 'Comedy'
+                        },
+                        {
+                            text : 'Thrillers'
+                        },
+                        {
+                            text : 'Horror'
+                        }
+                    ]
+                },
+                {
+                    xtype : 'spacer'
+                },
+                {
+                    xtype : 'button',
+                    text  : 'Cancel'
+                }
+            ]
+        };
+
+        Ext.create('Ext.Panel', {
+            fullscreen  : true,
+            style       : 'background-color: #CCF;',
+            html        : 'Full screen Panel',
+            items       : toolbar
+        });
+
+    }
+});
+
+</script>
+
+</head>
+<body></body>
+</html>

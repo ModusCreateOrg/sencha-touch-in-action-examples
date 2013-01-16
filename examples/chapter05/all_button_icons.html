@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+<script type="text/javascript">
+
+Ext.application({
+    launch: function() {
+
+        var buttons =  [
+            {
+                text      : 'action',
+                iconCls   : 'action'
+            },
+            {
+                text      : 'add',
+                iconCls   : 'add'
+            },
+            {
+                text      : 'arrow_down',
+                iconCls   : 'arrow_down'
+            },
+            {
+                text      : 'arrow_left',
+                iconCls   : 'arrow_left'
+            },
+            {
+                text      : 'arrow_right',
+                iconCls   : 'arrow_right'
+            },
+            {
+                text      : 'arrow_up',
+                iconCls   : 'arrow_up'
+            },
+            {
+                text      : 'compose',
+                iconCls   : 'compose'
+            },
+            {
+                text      : 'delete',
+                iconCls   : 'delete'
+            },
+            {
+                text      : 'organize',
+                iconCls   : 'organize'
+            },
+            {
+                text      : 'refresh',
+                iconCls   : 'refresh'
+            },
+            {
+                text      : 'reply',
+                iconCls   : 'reply'
+            },
+            {
+                text      : 'search',
+                iconCls   : 'search'
+            },
+            {
+                text      : 'settings',
+                iconCls   : 'settings'
+            },
+            {
+                text      : 'star',
+                iconCls   : 'star'
+            },
+            {
+                text      : 'trash',
+                iconCls   : 'trash'
+            },
+            {
+                text      : 'maps',
+                iconCls   : 'maps'
+            },
+            {
+                text      : 'locate',
+                iconCls   : 'locate'
+            },
+            {
+                text      : 'home',
+                iconCls   : 'home'
+            },
+            {
+                text      : 'bookmarks',
+                iconCls   : 'bookmarks'
+            },
+            {
+                text      : 'download',
+                iconCls   : 'download'
+            },
+            {
+                text      : 'favorites',
+                iconCls   : 'favorites'
+            },
+            {
+                text      : 'info',
+                iconCls   : 'info'
+            },
+            {
+                text      : 'more',
+                iconCls   : 'more'
+            },
+            {
+                text      : 'time',
+                iconCls   : 'time'
+            },
+            {
+                text      : 'user',
+                iconCls   : 'user'
+            },
+            {
+                text      : 'team',
+                iconCls   : 'team'
+            }
+        ];
+
+        buttons.push({
+            xtype  : 'toolbar',
+            docked : 'top',
+            title  : 'Sencha Touch Button icons'
+        });
+
+        buttons.push({
+            xtype  : 'toolbar',
+            docked : 'bottom',
+            height : 25,
+            style  : 'font-size: .49em;',
+            title  : 'Brought to you by the Sencha Touch in Action team!'
+        });
+
+        Ext.create('Ext.Panel', {
+            fullscreen  : true,
+            style       : 'background-color: #CCF;',
+            defaultType : 'button',
+            scrollable    : {
+                direction : 'vertical'
+            },
+            defaults    : {
+                iconAlign : 'left',
+                iconMask  : true
+            },
+            layout      : {
+                type : 'vbox',
+                pack : 'center'
+            },
+            items   : buttons
+        });
+
+    }
+});
+
+</script>
+
+</head>
+<body></body>
+</html>

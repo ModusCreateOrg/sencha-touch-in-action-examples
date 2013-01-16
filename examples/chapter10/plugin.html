@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Sencha Touch in Action Chapter 10</title>
+    <link rel="stylesheet" type="text/css" href="../../touch/resources/css/sencha-touch.css"/>
+    <script type="text/javascript" src="../../touch/sencha-touch-debug.js"></script>
+    <style>
+        .animated {
+            -webkit-transition-property : height;
+            -webkit-transition-duration : .5s;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    Ext.Loader.setConfig({
+        paths : {
+            'Ext'    : '../../touch/src',
+            'Ext.ux' : 'js/'
+        }
+    });
+    Ext.require([
+        'Ext.MessageBox',
+        'Ext.form.Panel',
+        'Ext.ux.FieldsetCollapser'
+    ]);
+
+    Ext.application({
+        launch : function() {
+            Ext.Viewport.add({
+                xtype  : 'toolbar',
+                docked : 'top',
+                title  : 'Collapsible Fieldsets'
+            });
+
+            Ext.Viewport.add({
+                xtype : 'formpanel',
+                items : [
+                    {
+                        xtype       : 'fieldset',
+                        defaultType : 'textfield',
+                        title       : 'Name info',
+                        plugins     : {
+                            type : 'fieldsetcollapser'
+                        },
+                        items       : [
+                            {
+                                label : 'First'
+                            },
+                            {
+                                label : 'Middle'
+                            },
+                            {
+                                label : 'Last'
+                            }
+                        ]
+                    },
+                    {
+                        xtype       : 'fieldset',
+                        defaultType : 'textfield',
+                        title       : 'Address info',
+                        plugins     : {
+                            type      : 'fieldsetcollapser',
+                            collapsed : true
+                        },
+                        items       : [
+                            {
+                                label : 'Address'
+                            },
+                            {
+                                label : 'City'
+                            },
+                            {
+                                label : 'State'
+                            },
+                            {
+                                label : 'Postal'
+                            }
+                        ]
+                    },
+//                    {
+//                        xtype       : 'fieldset',
+//                        defaultType : 'textfield',
+//                        title       : 'Vehicle info',
+//                        plugins     : {
+//                            type : 'fieldsetcollapser'
+//                        },
+//                        items       : [
+//                            {
+//                                label : 'Make'
+//                            },
+//                            {
+//                                label : 'Model'
+//                            },
+//                            {
+//                                label : 'Mileage'
+//                            },
+//                            {
+//                                label : 'Color'
+//                            }
+//                        ]
+//                    }
+                ]
+            });
+
+        }
+    });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            launch : function() {
+                var handleAddButton = function () {                                      // # 2
+                    var dockedItems = myPanel.getDockedItems();
+
+                    myPanel.add({
+                        xtype  : 'container',                                            //  # 3
+                        docked : 'top',
+                        style  : 'border-bottom: 1px solid; background-color: #F99;',
+                        height : 30,
+                        html   : 'Top dock: ' + dockedItems.length
+                    });
+                };
+
+                var handleRemoveButton = function () {                                   // # 2
+                    var dockedItems = myPanel.getDockedItems(),
+                        totalItems  = dockedItems.length,
+                        dockedItem;
+
+                    if (totalItems > 0) {
+                        dockedItem = myPanel.getDockedComponent(totalItems - 1);
+                        myPanel.remove(dockedItem, true);                              // # 4
+                    }
+                };
+
+                var myPanel = Ext.create('Ext.Panel', {                              // # 1
+                    fullscreen : true,
+                    bodyStyle  : 'padding: 10px;',
+                    layout     : {
+                        type : 'vbox',
+                        pack : 'center'
+                    },
+                    items      : [
+                        {
+                            xtype   : 'button',
+                            text    : 'Add top',
+                            handler : handleAddButton
+                        },
+                        {
+                            xtype   : 'button',
+                            text    : 'Remove top',
+                            handler : handleRemoveButton
+                        }
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

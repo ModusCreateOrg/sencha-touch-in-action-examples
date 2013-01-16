@@ -1,0 +1,57 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Sencha Touch in Action Chapter 10</title>
+    <link rel="stylesheet" type="text/css" href="../../touch/resources/css/sencha-touch.css"/>
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    Ext.define('MyApp.car.BaseCar', {
+        extend      : 'Ext.Component',
+        config      : {
+            octaneRequired : null,
+            gear           : null,
+            engine         : 'I4',
+            turbo          : false,
+            wheels         : 'basic'
+        },
+        constructor : function() {
+            this.callParent();
+            this.setOctaneRequired(86);
+            this.setGear('park');
+        },
+        drive       : function() {
+            console.log("Vrrrrooooooom - I'm driving!");
+        }
+    });
+
+    Ext.define('MyApp.car.PremiumCar', {
+        extend      : 'MyApp.car.BaseCar',
+        config      : {
+            turbo  : true,
+            wheels : 'premium',
+            stereo : '5.1'
+        },
+        constructor : function() {
+            this.callParent(arguments);
+            this.setOctaneRequired(93);
+        },
+        applyEngine   : function(engine) {
+            return 'Turbo ' + engine;
+        },
+        drive       : function() {
+            this.setGear('drive');
+            this.callParent();
+            console.log('The turbo makes a big difference!');
+        }
+    });
+
+    var myFastCar = Ext.create('MyApp.car.PremiumCar');
+    myFastCar.drive();
+    console.log(myFastCar.getEngine());
+
+</script>
+</body>
+</html>
+

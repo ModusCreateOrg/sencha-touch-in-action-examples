@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Listing 7.10 New Button Under List</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.Loader.setPath('Ext', '../../touch/src');
+
+        Ext.require([
+            'Ext.data.Store',
+            'Ext.dataview.List',
+            'Ext.Button'
+        ]);
+
+        Ext.application({
+            name     : 'STIA',
+            viewport : {
+                autoMaximize : true
+            },
+            launch   : function () {
+
+                new Ext.dataview.List({
+                    fullscreen : true,
+                    itemTpl    : ''.concat(
+                        '{name} ',
+                        '<a href="http://www.twitter.com/{twitter}" target="_blank">',
+                            '@{twitter}',
+                        '</a>'
+                    ),
+                    store      : {
+                        fields  : ['name', 'twitter'],
+                        data    : [
+                            { name : 'Mitchell Simoens', twitter : 'SenchaMitch' },
+                            { name : 'Jay Garcia',       twitter : 'ModusJesus'  },
+                            { name : 'Anthony De Moss',  twitter : 'ademoss1'    }
+                        ]
+                    },
+                    items      : [
+                        {
+                            xtype      : 'button',
+                            docked     : 'bottom',
+                            scrollDock : 'bottom',
+                            text       : 'Load Next',
+                            ui         : 'confirm'
+                        }
+                    ]
+                });
+
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

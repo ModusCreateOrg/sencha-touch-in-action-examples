@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Listing 7.6 XTemplate Format</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            name     : 'STIA',
+            viewport : {
+                autoMaximize : true
+            },
+            launch   : function () {
+
+                STIA.formatDate = function(date, format) {
+                    return Ext.util.Format.date(date, format);
+                };
+
+                var template = Ext.create('Ext.XTemplate',
+                        '<p>Javascript execution: ',
+                        '{[STIA.formatDate(values.dateVal, "Y-m-d")]}</p>'
+                );
+
+                var html = template.apply({
+                    dateVal : new Date()
+                });
+
+                Ext.getBody().setHtml(html);
+
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

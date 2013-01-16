@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            launch : function() {
+                Ext.create('Ext.TabPanel', {                                       //#1
+                    fullscreen : true,
+                    ui         : 'light',
+                    tabBar     : {
+                        docked : 'bottom',
+                        layout : {
+                            pack : 'center'
+                        }
+                    },
+                    items      : [
+                        {
+                            style   : 'background-color: #FCC;',
+                            html    : 'Panel 1',
+                            title   : 'User',
+                            iconCls : 'user'                                       //#2
+                        },
+                        {
+                            style   : 'background-color: #CFC;',
+                            html    : 'Panel 2',
+                            title   : 'Groups',
+                            iconCls : 'team'
+                        },
+                        {
+                            style   : 'background-color: #CCF;',
+                            html    : 'Panel 3',
+                            title   : 'Locations',
+                            iconCls : 'maps'
+                        },
+                        {
+                            style   : 'background-color: #FFC;',
+                            html    : 'Panel 4',
+                            title   : 'Settings',
+                            iconCls : 'settings'
+                        }
+                    ]
+
+                });
+            }
+        })
+        ;
+
+
+    </script>
+
+</head>
+<body></body>
+</html>

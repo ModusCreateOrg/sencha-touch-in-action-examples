@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+    <title>Panels</title>
+    <link rel='stylesheet' href='../../touch/resources/css/sencha-touch.css' type='text/css'>
+    <script type='text/javascript' src='../../touch/sencha-touch-all-debug.js'></script>
+
+<script type='text/javascript'>
+
+Ext.application({
+    launch : function() {
+        var handleNavigation = function(btn) {
+            var cardContainer = myContainer.down('#cardContainer'),
+                    currentPanel = cardContainer.getActiveItem(),
+                    innerItems = cardContainer.getInnerItems(),
+                    totalItems = innerItems.length,
+                    currentIndex = innerItems.indexOf(currentPanel),
+                    direction,
+                    newIndex;
+            if (btn.getText() == 'Back') {                                                 //3
+                direction = 'right';
+                newIndex = currentIndex > 0 ? (currentIndex - 1) : (totalItems - 1);
+            }
+            else {
+                direction = 'left';
+                newIndex = currentIndex < (totalItems - 1) ? (currentIndex + 1) : 0;
+            }
+            cardContainer.animateActiveItem(newIndex, {
+                type      : 'slide',
+                direction : direction
+            });
+        };
+
+        var myContainer = Ext.create('Ext.Container', {
+            fullscreen : true,
+            layout     : 'vbox',
+            defaults   : {
+                width : '100%',
+                flex  : 1
+            },
+            items      : [
+                {
+                    itemId     : 'cardContainer', //#1
+                    layout     : {
+                        type      : 'card',
+                        animation : 'slide'
+                    },
+                    activeItem : 0,
+                    items      : [
+                        {
+                            xtype  : 'toolbar',
+                            docked : 'top',
+                            title  : 'Nested Layouts',
+                            items  : [
+                                {
+                                    text    : 'Back',
+                                    ui      : 'back',
+                                    handler : handleNavigation
+                                },
+                                {xtype : 'spacer'},
+                                {
+                                    text    : 'Next',
+                                    ui      : 'forward',
+                                    handler : handleNavigation
+                                }
+                            ]
+                        },
+                        { html : 'Card 1' },   //#3
+                        { html : 'Card 2' },
+                        { html : 'Card 3' }
+                    ]
+                },
+                {
+                    layout   : 'hbox', //#2
+                    style    : 'border: 1px solid blue;',
+                    defaults : {
+                        style : 'border: 1px solid red;',
+                        flex  : 1
+                    },
+                    items    : [
+                        { html : 'Panel (0, 0)' },
+                        { html : 'Panel (1, 0)' },
+                        { html : 'Panel (2, 0)' }
+                    ]
+                },
+                {
+                    layout   : 'hbox', //#2
+                    style    : 'border: 1px solid blue;',
+                    defaults : {
+                        style : 'border: 1px solid red;',
+                        flex  : 1
+                    },
+                    items    : [
+                        { html : 'Panel (0, 1)' },  //#3
+                        { html : 'Panel (1, 1)' },
+                        { html : 'Panel (2, 1)' }
+                    ]
+                }
+            ]
+        });
+
+    }
+});
+
+</script>
+
+</head>
+<body></body>
+</html>

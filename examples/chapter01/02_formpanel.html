@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>FormPanel</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            launch : function() {
+                var column1 = {
+                    xtype : 'container',
+                    flex  : 1,
+                    style : 'padding: 5px',
+                    items : {
+                        xtype : 'fieldset',
+                        items : [
+                            {
+                                xtype : 'textfield',
+                                label : 'First',
+                                value : 'Jay'
+                            },
+                            {
+                                xtype : 'textfield',
+                                label : 'Last',
+                                value : 'Garcia'
+                            },
+                            {
+                                xtype : 'sliderfield',
+                                label : 'Height'
+                            },
+                            {
+                                xtype   : 'checkboxfield',
+                                name    : 'author',
+                                label   : 'Author',
+                                checked : true
+                            },
+                            {
+                                xtype  : 'datepickerfield',
+                                label  : 'DOB',
+                                picker : {
+                                    yearFrom : 1950,
+                                    yearTo   : new Date().getFullYear()
+                                }
+                            },
+                            {
+                                xtype   : 'selectfield',
+                                name    : 'sex',
+                                label   : 'Sex',
+                                options : [
+                                    { text : 'Male', value : 'm' },
+                                    { text : 'Female', value : 'f' },
+                                    { text : 'Other', value : 'o' }
+                                ]
+                            },
+                            {
+                                xtype : 'urlfield',
+                                label : 'Web Site',
+                                value : 'http://moduscreate.com'
+                            },
+                            {
+                                xtype : 'emailfield',
+                                label : 'Email',
+                                value : 'jay@moduscreate.com'
+                            },
+                            {
+                                xtype : 'textareafield',
+                                label : 'bio',
+                                value : 'Author of Ext JS in Action and Sencha Touch in Action.  Community supporter and enthusiast.'
+                            }
+                        ]
+                    }
+                };
+                var column2 = {
+                    xtype : 'container',
+                    flex  : 1,
+                    style : 'padding: 5px',
+                    items : [
+                        {
+                            xtype : 'fieldset',
+                            items : [
+                                {
+                                    xtype : 'numberfield',
+                                    label : 'Cube number'
+                                },
+                                {
+                                    xtype : 'spinnerfield',
+                                    label : 'Number of chairs',
+                                    value : 2
+                                }
+
+                            ]
+                        },
+                        {
+                            xtype : 'fieldset',
+                            title : 'Credentials',
+                            items : [
+                                {
+                                    xtype : 'textfield',
+                                    label : 'Login'
+                                },
+                                {
+                                    xtype : 'passwordfield',
+                                    label : 'Password'
+                                },
+                                {
+                                    xtype : 'togglefield',
+                                    label : 'Enabled?'
+                                }
+                            ]
+                        },
+                        {
+                            xtype  : 'fieldset',
+                            title  : 'Role',
+                            layout : 'hbox',
+                            items  : [
+                                {
+                                    xtype : 'radiofield',
+                                    label : 'Admin',
+                                    style : 'border-bottom: none;',
+                                    flex  : 1,
+                                    name  : 'role'
+                                },
+                                {
+                                    xtype : 'radiofield',
+                                    flex  : 1,
+                                    label : 'Peeon',
+                                    name  : 'role'
+                                }
+                            ]
+                        },
+                        {
+                            xtype : 'button',
+                            text  : 'Submit',
+                            style : 'margin-top: -.5em'
+                        }
+                    ]
+                };
+
+                Ext.Viewport.add({
+                    fullscreen : true,
+                    layout     : 'hbox',
+                    items      : [
+                        {
+                            xtype  : 'toolbar',
+                            title  : 'Tell us about yourself.',
+                            docked : 'top'
+                        },
+                        column1,
+                        column2
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

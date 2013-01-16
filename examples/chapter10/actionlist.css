@@ -1,0 +1,24 @@
+.flexbox {
+    display            : -webkit-box;
+    -webkit-box-orient : horizontal;
+    padding            : 0 0 0 10px;
+}
+
+.list-icon {
+    margin              : 0 5px 0;
+    background-position : center center;
+    background-repeat   : no-repeat;
+    width               : 32px;
+    height              : 32px;
+    margin-top          : 7px;
+}
+
+.list-icon-active {
+    background-color: #007AD0;
+}
+
+.target-dismiss {
+    position : absolute;
+    right    : 0;
+}
+

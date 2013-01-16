@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">	
+    <title>Chapter 8 - Listing 8.1</title>
+	<link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+	<script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+	<script type="text/javascript">
+        /**
+         * Sample code to show how to use the basic
+         * usage of the Geolocation class
+         */
+
+		Ext.application({
+		    glossOnIcon         : false,
+		    icon                : 'icon.png',
+			tabletStartupScreen : 'tablet_startup.png',
+		    phoneStartupScreen  : 'phone_startup.png',
+
+		    launch : function() {
+
+                var geo = new Ext.util.Geolocation({
+                    allowHighAccuracy : true,
+                    listeners         : {
+                        locationupdate : function(geo) {
+                            console.log('New latitude: ' + geo.getLatitude());
+                        },
+                        locationerror  : function(geo, timeout) {
+                            if (timeout){
+                                console.log('Timeout occurred.');
+                            } else {
+                                console.log('Error occurred.');
+                            }
+                        }
+                    }
+                });
+                geo.updateLocation();
+
+
+            }
+		});
+
+	</script>
+</head>
+<body></body>
+</html>

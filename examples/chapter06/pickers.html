@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Pickers</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+    <style>
+        .color-red {
+            background : red;
+        }
+
+        .color-green {
+            background : green;
+        }
+
+        .color-blue {
+            background : blue;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            launch : function() {
+                var showPicker = function() {
+                    var myPicker = Ext.create('Ext.Picker', {
+                        useTitles : true, // generates a title for each slot, based on the slot configuration
+                        hidden    : true,
+                        slots     : [
+                            {
+                                name  : 'agegrp',
+                                title : 'Age group (years old)',
+                                data  : [
+                                    {text : '1 - 10', value : 1},
+                                    {text : '11 - 14', value : 2},
+                                    {text : '15 - 18', value : 3},
+                                    {text : '19 - 24', value : 4},
+                                    {text : '25 - 31', value : 5},
+                                    {text : '32 - 40', value : 6},
+                                    {text : '41 - 50', value : 7},
+                                    {text : '51 - 75', value : 8},
+                                    {text : '75 - 100+', value : 9}
+                                ]
+                            }
+                        ]
+                    });
+                    Ext.Viewport.add(myPicker).show();
+                };
+                var showColoredPicker = function() {
+                    var coloredPicker = Ext.create('Ext.Picker', {
+                        useTitles : true, // generates a title for each slot, based on the slot configuration
+                        hidden    : true,
+                        slots     : [
+                            {
+                                name  : 'mood',
+                                title : 'Mood',
+                                data  : [
+                                    {text : 'Happy', value : 1},
+                                    {text : 'Angry', value : 2},
+                                    {text : 'Sad', value : 3},
+                                    {text : 'Crazed', value : 4}
+                                ]
+                            },
+                            {
+                                name  : 'color',
+                                title : 'Color',
+                                data  : [
+                                    {text : '<div class="color-red">RED</div>', value : 'red'},
+                                    {text : '<div class="color-green">GREEN</div>', value : 'green'},
+                                    {text : '<div class="color-blue">BLUE</div>', value : 'blue'}
+                                ]
+                            }
+                        ]
+                    });
+                    Ext.Viewport.add(coloredPicker).show();
+                };
+                var showDatePicker = function() {
+                    var myDatePicker = Ext.create('Ext.DatePicker', {
+                        hidden    : true,
+                        yearFrom  : 2010,
+                        yearTo    : 2025,
+                        useTitles : true,
+                        slotOrder : ['year', 'month', 'day'],
+                        value     : { year : 2011, month : 7, day : 4 }
+                    });
+                    Ext.Viewport.add(myDatePicker).show();
+                };
+                var myPanel = new Ext.Panel({
+                    fullscreen  : true,
+                    defaultType : 'button',
+                    scroll      : 'vertical',
+                    layout      : {
+                        type  : 'vbox',
+                        align : 'stretch'
+                    },
+                    dockedItems : [
+                        {
+                            xtype : 'toolbar',
+                            title : 'Using Sheets',
+                            dock  : 'top'
+                        }
+                    ],
+                    defaults    : {
+                        flex  : 1,
+                        style : 'margin-bottom: 10px;'
+                    },
+                    items       : [
+                        {
+                            text    : 'Simple Picker',
+                            handler : showPicker
+                        },
+                        {
+                            text    : 'Colored Picker',
+                            handler : showColoredPicker
+                        },
+                        {
+                            text    : 'Date Picker',
+                            handler : showDatePicker
+                        },
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

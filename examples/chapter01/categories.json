@@ -1,0 +1,290 @@
+{
+    "text": "",
+    "items": [
+        {
+            "text": "Drinks",
+            "items": [
+                {
+                    "text": "Sports Drinks",
+                    "items": [
+                        {
+                            "text": "Sencha-aid",
+                            "size": "16 oz",
+                            "leaf": true,
+                            "price": 1.99
+                        },
+                        {
+                            "text": "Gatoraid",
+                            "size": "16 oz",
+                            "leaf": true,
+                            "price": 2.99
+                        },
+                        {
+                            "text": "Super-aid",
+                            "size": "12 oz",
+                            "leaf": true,
+                            "price": 3.99
+                        },
+                        {
+                            "text": "Cheateraid",
+                            "size": "8 oz",
+                            "leaf": true,
+                            "price": 0.99
+                        },
+                        {
+                            "text": "Fakeraid",
+                            "size": "32 oz",
+                            "leaf": true,
+                            "price": 2.45
+                        },
+                        {
+                            "text": "Faileraid",
+                            "size": "24 oz",
+                            "leaf": true,
+                            "price": 3.99
+                        },
+                        {
+                            "text": "Real-sweat",
+                            "size": "12 oz",
+                            "leaf": true,
+                            "price": 0.99
+                        }
+                    ]
+                },
+                {
+                    "text": "Water",
+                    "items": [
+                        {
+                            "text": "Deer Park",
+                            "size": "24 oz",
+                            "leaf": true,
+                            "price": 4.99
+                        },
+                        {
+                            "text": "Evian",
+                            "size": "16 oz",
+                            "leaf": true,
+                            "price": 1.99
+                        },
+                        {
+                            "text": "Foo spring",
+                            "size": "10 oz",
+                            "leaf": true,
+                            "price": 2.99
+                        },
+                        {
+                            "text": "Dumbwater",
+                            "size": "128 oz",
+                            "leaf": true,
+                            "price": 12.35
+                        },
+                        {
+                            "text": "Kleen Water",
+                            "size": "23 oz",
+                            "leaf": true,
+                            "price": 9.99
+                        },
+                        {
+                            "text": "No frills",
+                            "size": "12 oz",
+                            "leaf": true,
+                            "price": 0.99
+                        },
+                        {
+                            "text": "Tap water",
+                            "size": "23 oz",
+                            "leaf": true,
+                            "price": 2.99
+                        }
+                    ]
+                },
+                {
+                    "text": "Energy drinks",
+                    "items": [
+                        {
+                            "text": "Redbull",
+                            "size": "24 oz",
+                            "leaf": true,
+                            "price": 4.99
+                        },
+                        {
+                            "text": "Poo yourself",
+                            "size": "24 oz",
+                            "leaf": true,
+                            "price": 5.99
+                        },
+                        {
+                            "text": "IntoOrbit",
+                            "size": "64 oz",
+                            "leaf": true,
+                            "price": 2.99
+                        },
+                        {
+                            "text": "Silly Willy",
+                            "size": "21 oz",
+                            "leaf": true,
+                            "price": 2.22
+                        },
+                        {
+                            "text": "No way Jose!",
+                            "size": "128 oz",
+                            "leaf": true,
+                            "price": 12.34
+                        },
+                        {
+                            "text": "OMFG!",
+                            "size": "256 oz",
+                            "leaf": true,
+                            "price": 39.99
+                        },
+                        {
+                            "text": "The shakes",
+                            "size": "34 oz",
+                            "leaf": true,
+                            "price": 3.99
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "text": "Food",
+            "items": [
+                {
+                    "text": "Energy Bars",
+                    "items": [
+                        {
+                            "text": "Rockliff",
+                            "size": "8 oz",
+                            "leaf": true,
+                            "price": 2.99
+                        },
+                        {
+                            "text": "Super-bar",
+                            "size": "16 oz",
+                            "leaf": true,
+                            "price": 3.99
+                        },
+                        {
+                            "text": "Jellybar",
+                            "size": "21 oz",
+                            "leaf": true,
+                            "price": 3.99
+                        },
+                        {
+                            "text": "Breadbar",
+                            "size": "22 oz",
+                            "leaf": true,
+                            "price": 4.55
+                        },
+                        {
+                            "text": "Foamybar",
+                            "size": "14 oz",
+                            "leaf": true,
+                            "price": 5.99
+                        },
+                        {
+                            "text": "Woodybar",
+                            "size": "64 oz",
+                            "leaf": true,
+                            "price": 5.99
+                        },
+                        {
+                            "text": "Lardbar",
+                            "size": "54 oz",
+                            "leaf": true,
+                            "price": 2.99
+                        }
+                    ]
+                },
+                {
+                    "text": "Cereals",
+                    "items": [
+                        {
+                            "text": "Super nut crunch",
+                            "size": "16 oz",
+                            "leaf": true,
+                            "price": 2.99
+                        },
+                        {
+                            "text": "Simple-o's",
+                            "size": "26 oz",
+                            "leaf": true,
+                            "price": 3.99
+                        },
+                        {
+                            "text": "Honey nut",
+                            "size": "13 oz",
+                            "leaf": true,
+                            "price": 5.99
+                        },
+                        {
+                            "text": "Fruits and berries",
+                            "size": "53 oz",
+                            "leaf": true,
+                            "price": 5.35
+                        },
+                        {
+                            "text": "Nutt'n but sugar",
+                            "size": "55 oz",
+                            "leaf": true,
+                            "price": 5.99
+                        },
+                        {
+                            "text": "No frills",
+                            "size": "12 oz",
+                            "leaf": true,
+                            "price": 0.99
+                        },
+                        {
+                            "text": "Wafer taters",
+                            "size": "15 oz",
+                            "leaf": true,
+                            "price": 4.99
+                        }
+                    ]
+                },
+                {
+                    "text": "Sandwiches",
+                    "items": [
+                        {
+                            "text": "Turkey",
+                            "leaf": true,
+                            "price": 4.99
+                        },
+                        {
+                            "text": "Ham",
+                            "leaf": true,
+                            "price": 6.99
+                        },
+                        {
+                            "text": "BLT",
+                            "leaf": true,
+                            "price": 4.99
+                        },
+                        {
+                            "text": "Burger",
+                            "leaf": true,
+                            "price": 10.99
+                        },
+                        {
+                            "text": "Reuben",
+                            "leaf": true,
+                            "price": 22.74
+                        },
+                        {
+                            "text": "Chicken",
+                            "leaf": true,
+                            "price": 5.99
+                        },
+                        {
+                            "text": "Cheese",
+                            "leaf": true,
+                            "price": 0.99
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

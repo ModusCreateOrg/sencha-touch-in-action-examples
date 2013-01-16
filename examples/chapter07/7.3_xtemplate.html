@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Listing 7.3 XTemplate Example</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            name     : 'STIA',
+            viewport : {
+                autoMaximize : true
+            },
+            launch   : function () {
+
+                var template = Ext.create('Ext.XTemplate',
+                    'Book: ',
+                    '{data}'
+                );
+
+                var html = template.apply({
+                    data : 'Sencha Touch in Action'
+                });
+
+                Ext.getBody().setHtml(html);
+
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

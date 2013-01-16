@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+            launch : function() {
+                var name; // <-- used for the selection handler
+                Ext.define('ListModel', {
+                    extend : 'Ext.data.Model',
+                    config : {
+                        fields : [
+                            'firstName',
+                            'lastName'
+                        ]
+                    }
+                });
+
+                var data = [
+                    {
+                        firstName : 'Jay',
+                        lastName  : 'Garcia'
+                    },
+                    {
+                        firstName : 'Anthony',
+                        lastName  : 'DeMoss'
+                    },
+                    {
+                        firstName : 'Mitchell',
+                        lastName  : 'Simoens'
+                    },
+                    {
+                        firstName : 'Sebastian',
+                        lastName  : 'Stirling'
+                    },
+                    {
+                        firstName : 'Michael',
+                        lastName  : 'Stephens'
+                    },
+                    {
+                        firstName : 'Marjan',
+                        lastName  : 'Bace'
+                    },
+                    {
+                        firstName : 'Blaise',
+                        lastName  : 'Bace'
+                    },
+                    {
+                        firstName : 'Mary',
+                        lastName  : 'Piergies'
+                    },
+                    {
+                        firstName : 'Troy',
+                        lastName  : 'Mott'
+                    },
+                    {
+                        firstName : 'Maureen',
+                        lastName  : 'Spencer'
+                    },
+                    {
+                        firstName : 'Candace',
+                        lastName  : 'Gilhooley'
+                    },
+                    {
+                        firstName : 'Christina',
+                        lastName  : 'Rudloff'
+                    }
+
+                ];
+
+                var store = Ext.create('Ext.data.Store', {
+                    model : 'ListModel',
+                    data  : data,
+                    proxy : {
+                        type : 'memory'
+                    }
+                });
+
+                console.log(store);
+
+                Ext.Viewport.add({
+                    xtype      : 'container',
+                    fullscreen : true,
+                    html       : '&lt;-- select someone.',
+                    items      : [
+                        {
+                            xtype   : 'toolbar',
+                            docked  : 'top',
+                            itemId  : 'topToolbar',
+                            title   : 'Choose someone',
+                            buttons : [
+                                {
+                                    ui   : 'back',
+                                    text : "Back"
+                                }
+                            ]
+                        },
+                        {
+                            xtype  : 'toolbar',
+                            docked : 'bottom',
+                            items  : [
+                                {
+                                    ui   : 'back',
+                                    text : 'Back'
+                                },
+                                {
+                                    xtype : 'spacer'
+                                },
+                                {
+                                    ui   : 'confirm',
+                                    text : 'OK'
+                                },
+                                {
+                                    ui   : 'decline',
+                                    text : 'Cancel'
+                                }
+                            ]
+                        },
+                        {
+                            xtype     : 'list',
+                            docked    : 'left',
+                            style     : 'border-right: 1px solid #9E9E9E;',
+                            width     : 100,
+                            store     : store,
+                            itemTpl   : '{firstName}',
+                            listeners : {
+                                itemtap : function(thisView, rowIdx, itemEl, record) {
+                                    console.log(arguments);
+                                    var container = this.up('container'),
+                                        topToolbar = container.down('#topToolbar');
+
+                                    name = record.get('firstName') + ' ' + record.get('lastName');
+
+                                    topToolbar.setTitle('Selected : ' + name);
+                                    container.setHtml('Hello ' +  name + '! How are you doing?');
+                                }
+                            }
+                        }
+                    ]
+                });
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

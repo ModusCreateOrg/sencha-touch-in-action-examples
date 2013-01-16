@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Chapter 6 - Listing 5.6</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+        /*
+         Sample code for a simple sheet
+         */
+        Ext.application({
+            launch : function() {
+                var myDatePicker = Ext.create("Ext.DatePicker", {
+                    useTitles : true,
+                    yearFrom  : 2010,
+                    yearTo    : 2025,
+                    slotOrder : ['year', 'month', 'day'],
+                    value     : {
+                        year  : 2011,
+                        month : 7,
+                        day   : 4
+                    }
+                });
+                Ext.Viewport.add(myDatePicker).show();
+            }
+        });
+
+    </script>
+</head>
+<body></body>
+</html>

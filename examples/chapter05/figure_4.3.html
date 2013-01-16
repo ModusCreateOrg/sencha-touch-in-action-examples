@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+<script type="text/javascript">
+
+Ext.application({
+    launch: function() {
+        var name; // <-- used for the selection handler
+        Ext.regModel('list', {
+            fields : ['firstName']
+        });
+
+        var data = [
+            {
+                firstName : 'Jay',
+                lastName  : 'Garcia'
+            },
+            {
+                firstName : 'Anthony',
+                lastName  : 'DeMoss'
+            },
+            {
+                firstName : 'Sebastian',
+                lastName  : 'Stirling'
+            },
+            {
+                firstName : 'Michael',
+                lastName  : 'Stephens'
+            },
+            {
+                firstName : 'Marjan',
+                lastName  : 'Bace'
+            },
+            {
+                firstName : 'Blaise',
+                lastName  : 'Bace'
+            },
+            {
+                firstName : 'Mitchell',
+                lastName  : 'Simoens'
+            },
+            {
+                firstName : 'Mary',
+                lastName  : 'Piergies'
+            },
+            {
+                firstName : 'Troy',
+                lastName  : 'Mott'
+            },
+            {
+                firstName : 'Maureen',
+                lastName  : 'Spencer'
+            },
+            {
+                firstName : 'Candace',
+                lastName  : 'Gilhooley'
+            },
+            {
+                firstName : 'Christina',
+                lastName  : 'Rudloff'
+            }
+
+        ];
+
+        var store = new Ext.data.JsonStore({
+            model    : 'list',
+            data     : data,
+            autoLoad : true
+        });
+
+        var topDock = {
+                xtype : 'toolbar',
+                dock  : 'top',
+                title : 'Choose someone',
+                buttons : [
+                    {
+                        ui   : 'back',
+                        text : "Back"
+                    }
+                ]
+            },
+            bottomDock = {
+                xtype : 'toolbar',
+                dock  : 'bottom',
+                items :  [
+                    {
+                        ui   : 'back',
+                        text : 'Back'
+                    },
+                    {
+                        xtype : 'spacer'
+                    },
+                    {
+                        ui   : 'confirm',
+                        text : 'OK'
+                    },
+                    {
+                        ui   : 'decline',
+                        text : 'Cancel'
+                    }
+                ]
+            },
+            leftDock = {
+                xtype     : 'list',
+                dock      : 'left',
+                width     : 100,
+                store     : store,
+                itemTpl   : '{firstName}',
+                listeners : {
+                    itemtap : function(thisView, rowIdx, itemEl) {
+                        var record     = thisView.store.getAt(rowIdx),
+                            topToolbar = myPanel.getDockedItems()[0];
+
+                        name = record.get('firstName');
+
+                        topToolbar.setTitle ('Selected : ' + name);
+                        myPanel.body.dom.innerHTML = 'Hello ' + name + '! How are you doing?';
+                    }
+                }
+            };
+
+        var myPanel = new Ext.Panel({
+            fullscreen  : true,
+            bodyStyle   : 'padding: 10px;',
+            html        : '&lt;-- select someone.',
+            dockedItems : [
+                topDock,
+                bottomDock,
+                leftDock
+            ],
+            layout : {
+                type  : 'vbox',
+                pack  : 'none',
+                align : 'stretch'
+            }
+        });
+    }
+});
+
+</script>
+
+</head>
+<body></body>
+</html>

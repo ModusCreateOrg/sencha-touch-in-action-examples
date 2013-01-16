@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Panels</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+
+        Ext.application({
+    launch : function() {
+            var myContainer = Ext.create('Ext.Container', {
+                fullscreen : true, //1
+                defaults   : {
+                    style : 'border: 1px solid blue;'                         //2
+                },
+                items      : [
+                    {
+                        docked : 'top',
+                        xtype  : 'toolbar',
+                        title  : 'Default Layout' //3
+                    },
+                    {
+                        docked : 'bottom',
+                        xtype  : 'toolbar', //4
+                        items  : [
+                            {
+                                text    : 'Add Child',
+                                handler : function() {
+                                    myContainer.add({
+                                        xtype : 'container',
+                                        style : 'border: 1px solid blue;',
+                                        html  : 'Child'
+                                    });
+                                }
+                            },
+                            {
+                                text    : 'Add Fixed Width Child',
+                                handler : function() {
+                                    myContainer.add({
+                                        xtype : 'container',
+                                        style : 'border: 1px solid blue;',
+                                        width : 100,
+                                        html  : 'Fixed Child'
+                                    });
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        html : 'First Child'                                     //5
+                    },
+                    {
+                        html  : 'Fixed Width Child',
+                        width : 100
+                    },
+                    {
+                        html : 'Child'
+                    }
+                ]
+            });
+                /*
+
+                 var myContainer = new Ext.Container({
+                 fullscreen: true,                                               1
+                 defaults: {
+                 style: 'border: 1px solid blue;'                         2
+                 },
+                 items:[
+                 {
+                 docked : 'top',
+                 xtype: 'toolbar',
+                 title: 'Default Layout',                                 3
+                 },{
+                 docked : 'bottom',
+                 xtype: 'toolbar',                                        4
+                 items: [
+                 {
+                 text: 'Add Child',
+                 handler: function(){
+                 myContainer.add({
+                 xtype: ' container ',
+                 style: 'border: 1px solid blue;',
+                 html: 'Child'
+                 });
+                 }
+                 },{
+                 text: 'Add Fixed Width Child',
+                 handler: function(){
+                 myContainer.add({
+                 xtype: 'container',
+                 style: 'border: 1px solid blue;',
+                 width: 100,
+                 html: 'Fixed Child'
+                 });
+                 }
+                 }
+                 ]
+                 },{
+                 html: 'First Child'                                     5
+                 },{
+                 html: 'Fixed Width Child',
+                 width: 100
+                 },{
+                 html: 'Child',
+                 }
+                 ]
+                 });
+
+                 */
+            }
+        });
+
+    </script>
+
+</head>
+<body></body>
+</html>

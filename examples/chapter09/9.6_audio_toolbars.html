@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Chapter 8 - Listing 8.6</title>
+    <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
+    <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
+
+    <script type="text/javascript">
+        /**
+         * Sample code to show a simple
+         * example of Ext.Audio with some toolbars
+         */
+
+        Ext.application({
+            glossOnIcon         : false,
+            icon                : 'icon.png',
+            tabletStartupScreen : 'tablet_startup.png',
+            phoneStartupScreen  : 'phone_startup.png',
+
+            launch : function() {
+
+                new Ext.Container({
+                    fullscreen : true,
+                    layout     : 'fit',
+                    items      : [
+                        {
+                            xtype : 'toolbar',
+                            docked : 'top',
+                            items  : [
+                                {
+                                    text : 'Stop',
+                                    ui   : 'decline'
+                                },
+                                {
+                                    xtype : 'spacer'
+                                },
+                                {
+                                    text     : 'Play',
+                                    ui       : 'confirm',
+                                    disabled : true
+                                },
+                                {
+                                    xtype : 'spacer'
+                                },
+                                {
+                                    text : 'Pause',
+                                    ui   : 'action'
+                                }
+                            ]
+                        },
+                        {
+                            xtype  : 'toolbar',
+                            docked : 'bottom',
+                            items  : [
+                                {
+                                    xtype      : 'sliderfield',
+                                    label      : 'Volume',
+                                    labelWidth : '17%',
+                                    flex       : 1,
+                                    value      : 50,
+                                    minValue   : 0,
+                                    maxValue   : 100,
+                                    increment  : 10
+                                }
+                            ]
+                        },
+                        {
+                            xtype      : 'audio',
+                            url        : '../../touch/examples/audio/crash.mp3',
+                            autoResume : true,
+                            loop       : true,
+                            volume     : 0.5
+                        }
+                    ]
+                });
+
+            }
+        });
+
+    </script>
+    <style>
+        .x-slider-field .x-component-outer {
+            padding: 0;
+        }
+
+        .x-slider-field .x-form-label {
+            margin: .5em;
+        }
+
+        .x-slider-field {
+            margin: 0 !important;
+        }
+    </style>
+</head>
+<body></body>
+</html>
