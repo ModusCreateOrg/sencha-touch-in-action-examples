@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    <title>Sencha Touch in Action Chapter 10</title>
+    <title></title>
     <link rel="stylesheet" type="text/css" href="../../touch/resources/css/sencha-touch.css"/>
     <link rel="stylesheet" type="text/css" href="icons/icons.css"/>
     <link rel="stylesheet" type="text/css" href="actionlist.css"/>
@@ -10,65 +10,68 @@
 </head>
 <body>
 <script type="text/javascript">
-    Ext.Loader.setConfig({
-        paths : {
-            'Ext'    : '../../touch/src',
-            'Ext.ux' : 'js/'
-        }
-    });
+Ext.Loader.setConfig({
+    paths : {
+        'Ext'    : '../../touch/src',
+        'Ext.ux' : 'js/'
+    }
 
-    Ext.application({
-        launch : function() {
-            Ext.require([
-                'Ext.MessageBox',
-                'Ext.ux.ActionList'
-            ]);
+});
 
-            Ext.define('ListModel', {
-                extend : 'Ext.data.Model',
-                config : {
-                    fields : [
-                        'firstName',
-                        'lastName'
-                    ]
-                }
-            });
+Ext.require([
+    'Ext.MessageBox',
+    'Ext.data.Store',
+    'Ext.ux.ActionList'
+]);
 
-            var store = Ext.create('Ext.data.Store', {
+Ext.define('ListModel', {
+    extend : 'Ext.data.Model',
+    config : {
+        fields : [
+            'firstName',
+            'lastName'
+        ]
+    }
+});
+
+
+Ext.application({
+    launch : function() {
+
+        Ext.create('Ext.ux.ActionList', {
+            fullscreen : true,
+            itemTpl    : '{lastName}, {firstName}',
+            items      : {
+                xtype  : 'toolbar',
+                docked : 'top',
+                title  : 'ActionList extension!'
+            },
+            store      : {
                 model    : 'ListModel',
                 autoLoad : true,
                 proxy    : {
                     type : 'ajax',
                     url  : 'complexData.json'
                 }
-            });
+            },
+            actions    : [
+                'phone',
+                'thumbs_up',
+                'thumbs_down'
+            ],
+            listeners  : {
+                actiontap : function(list, listItem, action, record) {
+                    var msg = record.data.firstName + ' ' + record.data.lastName;
 
-
-            Ext.create('Ext.ux.ActionList', {
-                fullscreen : true,
-                store      : store,
-                itemTpl    : '{lastName}, {firstName}',
-                items      : {
-                    xtype  : 'toolbar',
-                    docked : 'top',
-                    title  : 'ActionList extension!'
-                },
-                actions    : [
-                    'phone',
-                    'thumbs_up',
-                    'thumbs_down'
-                ],
-                listeners  : {
-                    actiontap : function(list, listItem, action, record) {
-                        Ext.Msg.alert(
-                            'You tapped ' + action,
-                            record.get('firstName') + ' ' + record.get('lastName')
-                        )
-                    }
+                    Ext.Msg.alert(
+                        'You tapped ' + action,
+                        msg
+                    )
                 }
-            });
-        }
-    });
+            }
+        });
+    }
+});
 </script>
 </body>
 </html>

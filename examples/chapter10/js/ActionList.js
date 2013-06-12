@@ -7,11 +7,15 @@ Ext.define('Ext.ux.ActionList', {
     config : {
         defaultType        : 'actionlistitem',
         actions            : null,
-        currentActionItem : null,
+        currentActionsItem : null,
 
         control : {
             'container > actionlistitem' : {
-                actiontap : 'onActionItemTap'
+                actiontap         : 'onActionItemTap',
+
+                // Custom events fired by ActionListItem
+                horizontaldrag    : 'onItemHorizontalDrag',
+                horizontaldragend : 'onItemHorizontalDragEnd'
             }
         }
     },
@@ -20,55 +24,62 @@ Ext.define('Ext.ux.ActionList', {
         var me = this;
         me.callParent();
 
-        me.on({
-            scope     : me,
-            itemswipe : 'onItemSwipeShowActions',
-            itemtap   : 'clearActionsEl'
-        });
-
-//        debugger;
-
         me.getScrollable().getScroller().on({
             scope  : me,
-            scroll : 'clearActionsEl'
+            scroll : 'onScrollClearActionsEl'
+        });
+
+        me.on({
+            scope  : me,
+            select : 'onItemSelectClearActionsEl'
         });
     },
 
-    onItemSwipeShowActions : function(view, idx, itemCmp, rec, evt) {
-        var me             = this,
-            innerContainer = me.getInnerItems()[0],
-            listItems      = innerContainer.getItems().items,
-            index          = 0,
-            numItems       = listItems.length,
-            translatable   = me.getScrollable().getScroller().getTranslatable();
+    onItemHorizontalDrag : function(item, moveToX) {
+        var me          = this,
+            scrollable  = me.getScrollable(),
+            scroller    = scrollable.getScroller(),
+            currActions = me.getCurrentActionsItem();
 
-        translatable.stopAnimation();
+        scroller.setDisabled(true);
+        scrollable.hideIndicators();
 
-        for (; index < numItems; index++) {
-            listItems[index].hideActions();
+        item.showActions(this.getActions(), moveToX);
+
+        if (currActions != item) {
+            me.onScrollClearActionsEl();
         }
-
         me.deselectAll();
-
-        itemCmp.showActions(me.getActions());
-
-        me.setCurrentActionItem(itemCmp);
+        me.setCurrentActionsItem(item);
     },
 
-    clearActionsEl : function() {
-        var me           = this,
-            actionItem  = this.getCurrentActionItem(),
-            translatable = me.getScrollable().getScroller().getTranslatable();
+    onItemHorizontalDragEnd : function() {
+        var scrollable = this.getScrollable(),
+            scroller   = scrollable.getScroller();
+
+        scroller.setDisabled(false);
+    },
+
+    onScrollClearActionsEl : function() {
+        var me          = this,
+            actionItem  = me.getCurrentActionsItem();
 
         if (actionItem) {
-            me.setCurrentActionItem(null);
             actionItem.hideActions();
+            me.setCurrentActionsItem(null);
         }
     },
+
+    onItemSelectClearActionsEl  : function() {
+        this.onScrollClearActionsEl();
+    },
+
     onActionItemTap : function(listItem, action, record) {
         var me = this;
 
-        me.setCurrentActionItem(null);
-        me.fireEvent('actiontap', me, listItem, action, record)
+        me.setCurrentActionsItem(null);
+        me.deselectAll();
+
+        me.fireEvent('actiontap', me, listItem, action, record);
     }
 });

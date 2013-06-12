@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Panels</title>
+    <title></title>
     <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
     <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
 
@@ -32,60 +32,61 @@ Ext.application({
             }
         ]
     };
-    
-    var bbar = {                                                         //# 3
-        xtype    : 'toolbar',
-        docked   : 'bottom',
-        height   : 60,
-        defaults : {
-            iconMask : true
-        },
-        items : [                                                        //# 4
-            {
-                iconCls   : 'refresh',
-                iconAlign : 'top',
-                ui        : 'plain'
+
+        var bbar = {                                                         //# 3
+            xtype    : 'toolbar',
+            docked   : 'bottom',
+            defaults : {
+                iconMask : true
             },
-            {
-                text      : 'search',
-                iconCls   : 'search',
-                ui        : 'drastic',
-                iconAlign : 'bottom'
-            }
-        ]
-    };
-    
-    Ext.create('Ext.Panel', {
-        fullscreen  : true,
-        defaultType : 'button',
-        defaults    : {
-        iconMask : true
-        },
-        layout : {
-            type : 'vbox',
-            pack : 'center',
-            align: 'center'
-        },
-        items : [
-            tbar,                                                         //# 5
-            bbar,
-            {                                                             //# 6
-                text      : 'generic',
-                width     : 150
-            },{
-                text      : 'compose', 
-                iconCls   : 'compose',
-                iconAlign : 'right',
-                ui        : 'action',
-                width     : 150
-            },{
-                text     : 'star',
-                iconCls  : 'star',
-                ui       : 'confirm',
-                width    : 150
-            }
-        ]
-    });
+            items    : [                                                        //# 4
+                {
+                    iconCls   : 'refresh',
+                    iconAlign : 'top',
+                    ui        : 'plain'
+                },
+                {
+                    text      : 'search',
+                    iconCls   : 'search',
+                    ui        : 'drastic',
+                    iconAlign : 'bottom'
+                }
+            ]
+        };
+
+        Ext.create('Ext.Panel', {
+            fullscreen  : true,
+            defaultType : 'button',
+            defaults    : {
+                iconMask : true
+            },
+            layout      : {
+                type  : 'vbox',
+                pack  : 'center',
+                align : 'center'
+            },
+            items       : [
+                tbar,                                                         //# 5
+                bbar,
+                {                                                             //# 6
+                    text  : 'generic',
+                    width : 150
+                },
+                {
+                    text      : 'compose',
+                    iconCls   : 'compose',
+                    iconAlign : 'right',
+                    ui        : 'action',
+                    width     : 150
+                },
+                {
+                    text    : 'star',
+                    iconCls : 'star',
+                    ui      : 'confirm',
+                    width   : 150
+                }
+            ]
+        });
 
 
     }

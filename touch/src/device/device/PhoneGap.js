@@ -6,10 +6,10 @@ Ext.define('Ext.device.device.PhoneGap', {
 
     constructor: function() {
         // We can't get the device details until the device is ready, so lets wait.
-        if (Ext.Viewport.isReady) {
+        if (Ext.isReady) {
             this.onReady();
         } else {
-            Ext.Viewport.on('ready', this.onReady, this, {single: true});
+            Ext.onReady(this.onReady, this, {single: true});
         }
     },
 

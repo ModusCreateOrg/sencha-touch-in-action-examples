@@ -3,7 +3,6 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Panels</title>
     <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
     <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
 
@@ -14,28 +13,28 @@ Ext.application({
 
         var topDock =  {
                 xtype  : 'container',
-                dock   : 'top',
+                docked   : 'top',
                 style  : 'border-bottom: 1px solid; background-color: #F99;',
                 height : 30,
                 html   : 'Top dock'
             },
             bottomDock =  {
                 xtype  : 'container',
-                dock   : 'bottom',
+                docked   : 'bottom',
                 style  : 'border-top: 1px solid; background-color: #9F9;',
                 height : 30,
                 html   : 'Bottom dock'
             },
             leftDock = {
                 xtype : 'container',
-                dock  : 'left',
+                docked  : 'left',
                 width : 50,
                 style : 'border-right: 1px solid; background-color: #99F;',
                 html  : 'Left dock'
             },
             rightDock = {
                 xtype : 'container',
-                dock  : 'right',
+                docked  : 'right',
                 width : 50,
                 style : 'border-left: 1px solid; background-color: #FF9;',
                 html  : 'Right dock'

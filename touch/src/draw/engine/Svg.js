@@ -11,6 +11,13 @@ Ext.define('Ext.draw.engine.Svg', {
     statics: {
         BBoxTextCache: {}
     },
+    
+    config: {
+        /**
+         * Nothing needs to be done in high precision mode.
+         */
+        highPrecision: false
+    },
 
     getElementConfig: function () {
         return {
@@ -149,10 +156,10 @@ Ext.define('Ext.draw.engine.Svg', {
             return;
         }
         try {
-            ctx.save();
+            sprite.element = ctx.save();
             sprite.preRender(this);
             sprite.applyTransformations();
-            sprite.useAttributes(ctx);
+            sprite.useAttributes(ctx, region);
             if (false === sprite.render(this, ctx, [0, 0, region[2], region[3]])) {
                 return false;
             }
@@ -172,5 +179,14 @@ Ext.define('Ext.draw.engine.Svg', {
         delete me.mainGroup;
         delete me.ctx;
         me.callSuper(arguments);
+    },
+    
+    remove: function (sprite, destroySprite) {
+        if (sprite && sprite.element) {
+          //if sprite has an associated svg element remove it from the surface
+          sprite.element.destroy();
+          sprite.element = null;
+        }
+        this.callSuper(arguments);
     }
 });

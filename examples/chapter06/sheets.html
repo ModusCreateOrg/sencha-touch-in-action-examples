@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Sheets</title>
+    <title></title>
 	<link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
 	<script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
 
@@ -44,17 +44,18 @@ Ext.application({
 
         var store = Ext.create("Ext.data.Store", {
             model    : 'list',
-            data     : data,
+            data     : data
         });
 
 
         var showGenericSheet = function() {
             var mySheet = Ext.create("Ext.Sheet", {
-                stretchX    : true,
-                height      : 220,
-                layout      : 'fit',
-				hidden      : true,
-                items : [
+                stretchX : true,
+                height   : 220,
+                bottom   : 0,
+                layout   : 'fit',
+                hidden   : true,
+                items    : [
 					{
                         xtype : 'toolbar',
                         docked  : 'top',
@@ -121,7 +122,7 @@ Ext.application({
 			Ext.Viewport.add(myActions).show();
         };
 
-        var myPanel = Ext.create("Ext.Panel", {
+        Ext.create("Ext.Panel", {
             fullscreen  : true,
             defaultType : 'button',
             scroll      : 'vertical',
@@ -149,10 +150,7 @@ Ext.application({
                 {
                     text    : 'Action Sheet',
                     handler : showActionSheet
-                },
-
-
-                
+                }
 
             ]
         });

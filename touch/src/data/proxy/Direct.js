@@ -42,6 +42,11 @@ Ext.define('Ext.data.proxy.Direct', {
 
     config: {
         /**
+         * @cfg url
+         * @hide
+         */
+         
+        /**
          * @cfg {String/String[]} paramOrder
          * Defaults to undefined. A list of params to be executed server side.  Specify the params in the order in
          * which they must be executed on the server-side as either (1) an Array of String values, or (2) a String

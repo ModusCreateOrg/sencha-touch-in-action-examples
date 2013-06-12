@@ -1,11 +1,19 @@
 .flexbox {
     display            : -webkit-box;
-    -webkit-box-orient : horizontal;
-    padding            : 0 0 0 10px;
+    height             : 47px;
+    background-color   : rgb(205, 231, 194);
+    -webkit-box-shadow : inset 0 5px 5px #888;
+}
+
+.opaque-list-item {
+    background-color : rgba(247, 247, 247, 1);
+    z-index          : 99;
+    position         : absolute;
+    top              : 0;
 }
 
 .list-icon {
-    margin              : 0 5px 0;
+    margin              : -5px 5px 0;
     background-position : center center;
     background-repeat   : no-repeat;
     width               : 32px;
@@ -13,12 +21,9 @@
     margin-top          : 7px;
 }
 
-.list-icon-active {
-    background-color: #007AD0;
-}
 
 .target-dismiss {
     position : absolute;
-    right    : 0;
+    right    : 10px;
 }
 

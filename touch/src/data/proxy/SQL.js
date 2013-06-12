@@ -1,9 +1,12 @@
 /**
  * SQL proxy.
  */
-Ext.define('Ext.data.proxy.SQL', {
+Ext.define('Ext.data.proxy.Sql', {
     alias: 'proxy.sql',
     extend: 'Ext.data.proxy.Client',
+    alternateClassName: 'Ext.data.proxy.SQL',
+
+    isSQLProxy: true,
 
     config: {
         /**
@@ -16,9 +19,15 @@ Ext.define('Ext.data.proxy.SQL', {
          * @hide
          */
         writer: null,
-
+        /**
+         * @cfg {String} table
+         * Optional Table name to use if not provided ModelName will be used
+         */
         table: null,
-
+        /**
+         * @cfg {String} database
+         * Database name to access tables from
+         */
         database: 'Sencha',
 
         columns: '',
@@ -31,7 +40,7 @@ Ext.define('Ext.data.proxy.SQL', {
     },
 
     updateModel: function(model) {
-        if (model && !this.getTable()) {
+        if (model) {
             var modelName = model.modelName,
                 defaultDateFormat = this.getDefaultDateFormat(),
                 table = modelName.slice(modelName.lastIndexOf('.') + 1);
@@ -43,7 +52,9 @@ Ext.define('Ext.data.proxy.SQL', {
             });
 
             this.setUniqueIdStrategy(model.getIdentifier().isUnique);
-            this.setTable(table);
+            if (!this.getTable()) {
+                this.setTable(table);
+            }
             this.setColumns(this.getPersistedModelColumns(model));
         }
 
@@ -63,7 +74,7 @@ Ext.define('Ext.data.proxy.SQL', {
                 me.createTable(transaction);
             }
 
-            me.insertRecords(records, transaction, function(resultSet, errors) {
+            me.insertRecords(records, transaction, function(resultSet) {
                 if (operation.process(operation.getAction(), resultSet) === false) {
                     me.fireEvent('exception', this, operation);
                 }
@@ -110,7 +121,7 @@ Ext.define('Ext.data.proxy.SQL', {
                     me.fireEvent('exception', me, operation);
                 }
 
-                if (filters.length) {
+                if (filters && filters.length) {
                     filtered = Ext.create('Ext.util.Collection', function(record) {
                         return record.getId();
                     });
@@ -278,7 +289,7 @@ Ext.define('Ext.data.proxy.SQL', {
                 }
             }
 
-            ln = params.sorters.length;
+            ln = params.sorters && params.sorters.length;
             if (ln) {
                 for (i = 0; i < ln; i++) {
                     sorter = params.sorters[i];
@@ -316,7 +327,7 @@ Ext.define('Ext.data.proxy.SQL', {
                 result.setCount(count);
 
                 if (typeof callback == 'function') {
-                    callback.call(scope || me, result)
+                    callback.call(scope || me, result);
                 }
             },
             function(transaction, errors) {
@@ -325,7 +336,7 @@ Ext.define('Ext.data.proxy.SQL', {
                 result.setCount(0);
 
                 if (typeof callback == 'function') {
-                    callback.call(scope || me, result)
+                    callback.call(scope || me, result);
                 }
             }
         );
@@ -541,11 +552,15 @@ Ext.define('Ext.data.proxy.SQL', {
             case 'float':
                 return 'REAL';
             case 'bool':
-                return 'NUMERIC'
+                return 'NUMERIC';
         }
     },
 
     writeDate: function (field, date) {
+        if (Ext.isEmpty(date)) {
+            return null;
+        }
+
         var dateFormat = field.getDateFormat() || this.getDefaultDateFormat();
         switch (dateFormat) {
             case 'timestamp':

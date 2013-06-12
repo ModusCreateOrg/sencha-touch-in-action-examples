@@ -153,10 +153,16 @@ Ext.define('Ext.slider.Slider', {
         this.on({
             scope: this,
             delegate: '> thumb',
+            tap: 'onTap',
             dragstart: 'onThumbDragStart',
             drag: 'onThumbDrag',
             dragend: 'onThumbDragEnd'
         });
+
+        var thumb = this.getThumb(0);
+        if(thumb) {
+            thumb.on('resize', 'onThumbResize', this);
+        }
     },
 
     /**
@@ -194,11 +200,15 @@ Ext.define('Ext.slider.Slider', {
         this.offsetValueRatio = trackWidth / valueRange;
     },
 
-    onResize: function(element, info) {
+    onThumbResize: function(){
         var thumb = this.getThumb(0);
         if (thumb) {
             this.thumbWidth = thumb.getElementWidth();
         }
+        this.refresh();
+    },
+
+    onResize: function(element, info) {
         this.elementWidth = info.width;
         this.refresh();
     },
@@ -311,7 +321,7 @@ Ext.define('Ext.slider.Slider', {
 
         var targetElement = Ext.get(e.target);
 
-        if (!targetElement || targetElement.hasCls('x-thumb')) {
+        if (!targetElement || (Ext.browser.engineName == 'WebKit' && targetElement.hasCls('x-thumb'))) {
             return;
         }
 

@@ -159,8 +159,6 @@ Ext.define('Ext.dataview.component.Container', {
         var me = this,
             target = e.getTarget(),
             item = Ext.getCmp(target.id);
-        debugger;
-
         me.fireEvent('itemsingletap', me, item, me.indexOf(item), e);
     },
 
@@ -175,8 +173,6 @@ Ext.define('Ext.dataview.component.Container', {
         var me = this,
             target = e.getTarget(),
             item = Ext.getCmp(target.id);
-                debugger;
-
         me.fireEvent('itemswipe', me, item, me.indexOf(item), e);
     },
 

@@ -283,7 +283,11 @@ Ext.define('Ext.viewport.Android', {
 
     if (version.gtEq('4')) {
         this.override({
-            doBlurInput: Ext.emptyFn
+            doBlurInput: Ext.emptyFn,
+            onResize: function() {
+                this.callParent();
+                this.doFixSize();
+            }
         });
     }
 });

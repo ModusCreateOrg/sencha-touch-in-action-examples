@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Chapter 7 - Figure 7.4</title>
+    <title></title>
     <link rel="stylesheet" href="../../touch/resources/css/sencha-touch.css" type="text/css">
     <script type="text/javascript" src="../../touch/sencha-touch-all-debug.js"></script>
 
@@ -11,83 +11,88 @@
         Ext.application({
             launch : function() {
                 var column1 = {
-                    xtype : "container",
-                    items : [
-                        {
-                            xtype : "textfield",
-                            label : "First",
-                            value : "Jay"
-                        },
-                        {
-                            xtype : "textfield",
-                            label : "Last",
-                            value : "Garcia"
-                        },
-                        {
-                            xtype : "sliderfield",
-                            label : "Height"
-                        },
-                        {
-                            xtype : "checkboxfield",
-                            name  : "author",
-                            label : "Author",
-                            value : "author"
-                        },
-                        {
-                            xtype  : "datepickerfield",
-                            label  : "DOB",
-                            picker : {
-                                yearFrom : 1950,
-                                yearTo   : 2012
+                    xtype : 'container',
+                    items : {
+                        xtype : "fieldset",
+                        items : [
+                            {
+                                xtype : "textfield",
+                                label : "First",
+                                value : "Jay"
+                            },
+                            {
+                                xtype : "textfield",
+                                label : "Last",
+                                value : "Garcia"
+                            },
+                            {
+                                xtype : "sliderfield",
+                                label : "Height"
+                            },
+                            {
+                                xtype : "checkboxfield",
+                                name  : "author",
+                                label : "Author",
+                                value : "author"
+                            },
+                            {
+                                xtype  : "datepickerfield",
+                                label  : "DOB",
+                                picker : {
+                                    yearFrom : 1950,
+                                    yearTo   : 2012
+                                }
+                            },
+                            {
+                                xtype   : "selectfield",
+                                name    : "sex",
+                                label   : "Sex",
+                                options : [
+                                    { text : "Male", value : "m" },
+                                    { text : "Female", value : "f" },
+                                    { text : "Other", value : "o" }
+                                ]
+                            },
+                            {
+                                xtype : "urlfield",
+                                label : "Web Site",
+                                value : "http://tdg-i.com"
+                            },
+                            {
+                                xtype : "emailfield",
+                                label : "Email",
+                                value : "jgarcia@tdg-i.com"
+                            },
+                            {
+                                xtype : "textareafield",
+                                label : "bio",
+                                value : "Author of Ext JS in Action and Sencha Touch in Action.  Community supporter and enthusiast."
                             }
-                        },
-                        {
-                            xtype   : "selectfield",
-                            name    : "sex",
-                            label   : "Sex",
-                            options : [
-                                { text : "Male", value : "m" },
-                                { text : "Female", value : "f" },
-                                { text : "Other", value : "o" }
-                            ]
-                        },
-                        {
-                            xtype : "urlfield",
-                            label : "Web Site",
-                            value : "http://tdg-i.com"
-                        },
-                        {
-                            xtype : "emailfield",
-                            label : "Email",
-                            value : "jgarcia@tdg-i.com"
-                        },
-                        {
-                            xtype : "textareafield",
-                            label : "bio",
-                            value : "Author of Ext JS in Action and Sencha Touch in Action.  Community supporter and enthusiast."
-                        }
-                    ]
+                        ]
+                    }
                 };
                 var column2 = {
                     xtype : "container",
                     items : [
                         {
-                            xtype : "numberfield",
-                            label : "Cube number"
-                        },
-                        {
-                            xtype : "spinnerfield",
-                            label : "Number of chairs",
-                            value : 2
+                            xtype : 'fieldset',
+                            items : [
+                                {
+                                    xtype : "numberfield",
+                                    label : "Cube number"
+                                },
+                                {
+                                    xtype : "spinnerfield",
+                                    label : "Number of chairs",
+                                    value : 2,
+                                    stepValue : 1
+                                }
+                            ]
                         },
                         {
                             xtype : "fieldset",
                             title : "Credentials",
                             items : [
-                                {
-                                    xtype : "textfield",
-                                    label : "Login"
-                                },
                                 {
                                     xtype : "passwordfield",
                                     label : "Password"
@@ -101,14 +106,6 @@
                         {
                             xtype    : "fieldset",
                             title    : "Role",
-                            layout   : {
-                                type  : "hbox",
-                                align : "stretch"
-                            },
-                            defaults : {
-                                flex  : 1,
-                                style : "padding: 3px;"
-                            },
                             items    : [
                                 {
                                     xtype : "radiofield",
@@ -132,8 +129,7 @@
                 var myPanel = Ext.create("Ext.form.Panel", {
                     fullscreen  : true,
                     layout      : {
-                        type  : "hbox",
-                        align : "stretch"
+                        type  : "hbox"
                     },
                     defaults    : {
                         flex  : 1,
